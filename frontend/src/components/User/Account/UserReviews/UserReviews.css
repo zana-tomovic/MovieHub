@@ -1,0 +1,40 @@
+.movie-rating {
+  display: flex;
+  gap: 10px;
+}
+
+#movie {
+  font-size: 14px;
+}
+
+#messageNoReviews {
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+.userReviews button {
+  padding-right: 4px;
+}
+
+.userReviews button img {
+  width: 22px;
+  height: 22px;
+}
+
+.userReviews button,
+.userReviews button:focus {
+  background: none;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.review-buttons {
+  position: absolute;
+  right: 10px;  
+  top: -10px;
+  display: flex;
+  gap: 4px;
+}
+
+

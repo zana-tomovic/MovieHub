@@ -1,0 +1,54 @@
+.review-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  padding-left: 20px;
+  gap: 4px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  gap: 4px;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 20px;
+  transition: color 0.2s;
+}
+
+.rating input:checked ~ label {
+  color: rgb(214, 182, 0);
+}
+
+.rating:not(:checked) label {
+  color: #444;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+  color:  rgb(214, 182, 0);
+}
+
+.comment textarea {
+  width: 100%;
+  min-height: 100px;
+  border: 2px solid #444;
+  border-radius: 14px;
+  box-sizing: border-box;
+  padding: 14px;
+  font: 1.25rem / 1.5 sans-serif;
+  font-size: 14px;
+}
+
+#btnSubmit {
+  align-self: flex-end;
+  margin-top: 5px;
+  font-size: 14px;
+}

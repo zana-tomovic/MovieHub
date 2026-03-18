@@ -1,0 +1,37 @@
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  padding: 10px;
+  padding-bottom: 100px;
+  padding-left: 60px;
+}
+
+.review {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  padding: 10px;
+}
+
+.user-rating {
+  display: flex;
+  gap: 10px;
+}
+
+.rating span {
+  font-size: 22px;
+  line-height: 1;
+  color: rgb(214, 182, 0);
+}
+
+#username {
+  font-size: 14px;
+}
+
+#comment {
+  font-size: 16px;
+  border-radius: 12px;
+  margin-top: 10px;
+}

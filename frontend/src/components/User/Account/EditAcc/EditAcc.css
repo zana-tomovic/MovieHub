@@ -1,0 +1,57 @@
+form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+#pass1, #pass2 {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.label {
+    position: absolute;
+    left: 25px;
+    top: 0px;
+    transform: translateY(-50%);
+    background-color: #222;
+    margin: 0px;
+    padding: 0 6px;
+    font-size: 14px;
+    color: rgb(124, 124, 124);
+}
+
+input {
+    height: 48px;
+    width: 92%;
+    padding: 0 44px 0 14px;
+    font-size: 14px;
+    background: none;
+    border-radius: 12px;
+    border: 2px solid rgb(124, 124, 124);
+    box-sizing: border-box;
+}
+
+.btnVisibility {
+    position: absolute;
+    right: 30px;
+    top: 6px;
+}
+
+.btnVisibility, 
+.btnVisibility:focus {
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.btnVisibility img {
+    width: 20px;
+    height: 20px;
+}
+
+#btnSubmit {
+    margin-top: 10px;
+    background-color: #141414;
+}
