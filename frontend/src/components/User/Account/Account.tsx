@@ -60,7 +60,7 @@ const Account = () => {
       <div className="navbar">
         <div className="navbar-items">
           <button onClick={seeReviews}>Moje recenzije</button>
-          <button onClick={editAcc}>Promijenite lozinku</button>
+          <button onClick={editAcc}>Izmijenite nalog</button>
           <button onClick={deleteAcc}>Izbrisite nalog</button>
         </div>
       </div>

@@ -4,10 +4,13 @@ import { AppService } from "src/app.service";
 import { User } from "./user";
 import { aql } from "arangojs";
 import bcrypt from 'bcrypt';
+import { ReviewService } from "src/reviews/review.service";
 
 @Injectable()
 export class UserService {
-    constructor(private readonly appService: AppService) {}
+    constructor(private readonly appService: AppService,
+                private reviewService: ReviewService
+    ) {}
         
     async findAllUsers() {
         const cursor = await this.appService.db.query(aql `for u in users return u`);
@@ -61,6 +64,16 @@ export class UserService {
     }
 
     async delete(username: string) {
+        const cursor = await this.appService.db.query(`
+                for r in reviews
+                filter r.username == @username
+                return r._key
+            `, {username})
+
+        const res = await cursor.next();
+
+        await this.reviewService.delete(res);
+
         await this.appService.db.query(`for u in users filter u.username == @username remove u in users`, {username});
 
         return { message: 'Nalog je izbrisan.'};
