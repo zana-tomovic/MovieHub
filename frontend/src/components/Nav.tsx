@@ -37,7 +37,7 @@ const Nav = () => {
   return (
     <div className="navBar">
       <div className="logo">
-        <p><b>MovieHub</b></p>
+        <a href="/"><b>MovieHub</b></a>
       </div>
 
       <div className="nav">

@@ -10,10 +10,14 @@
     z-index: 1000;
 }
 
-.logo p {
+.logo a {
     padding: 20px;
     font-size: 24px;
     color: rgb(255, 255, 255);
+}
+
+.logo a:hover {
+    color: none; 
 }
 
 .nav a, .userLoggedIn a {
