@@ -33,11 +33,12 @@ export class MovieService {
             return v.rating 
           )
 
-          filter length(ratings) > 0
+          let voteCount = length(ratings)
+          let voteAv = voteCount > 0 ? average(ratings): 0
 
           update m with {
-            Vote_Average: average(ratings),
-            Vote_Count: Length(ratings)
+            Vote_Average: voteAv,
+            Vote_Count: voteCount
           } in movies
           return NEW
           `;

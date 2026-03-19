@@ -31,7 +31,7 @@ const Login = () => {
       navigate("/");
     })
     .catch((error) => {
-      console.log(error.message);
+      setError("Pogrešna lozinka ili korisničko ime.");
     })
 
     setError('');
@@ -75,7 +75,7 @@ const Login = () => {
 
           <button type="submit" id="btnLogin">Prijavi se</button>
 
-          <p>Nemas nalog? <a href="/register">Registruj se.</a> </p>
+          <p>Nemaš nalog? <a href="/register">Registruj se.</a> </p>
         </form>
       </div>
 
