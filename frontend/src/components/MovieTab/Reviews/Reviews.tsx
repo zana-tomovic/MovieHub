@@ -36,6 +36,7 @@ const Reviews = ({ movieId }: { movieId?: string }) => {
               </div>
               <p id="comment">{r.comment}</p>              
             </div>
+            <hr />
           </div>
         ))}
       </div>

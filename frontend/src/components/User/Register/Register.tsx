@@ -29,11 +29,12 @@ const Register = () => {
       password
     })
     .then((res) => {
-      console.log(res.data);
       navigate("/login");
     })
     .catch((error) => {
-      console.log(error.message);
+      if (error.response?.status === 401) {
+        setError("Korisničko ime je u upotrebi.");
+      }
     })
   }
 
@@ -85,7 +86,7 @@ const Register = () => {
 
           <button type="submit" id="btnRegister">Registruj se</button>
 
-          <p>Imas nalog? <a href="/login">Prijavi se.</a> </p>
+          <p>Imaš nalog? <a href="/login">Prijavi se.</a> </p>
         </form>
       </div>
 

@@ -105,7 +105,7 @@ const UserReviews = ({username}: {username?: string}) => {
                   />
                 </div>
 
-                <div>
+                <div className="buttons">
                   <button type="submit"><img src={checkIcon} alt="Sačuvaj" /></button>
                   <button type="button" onClick={cancelEdit}><img src={closeIcon} alt="Otkaži" /></button>
                 </div>

@@ -25,6 +25,10 @@ export class UserService {
     async register(user: User) {
         const hashPass = await bcrypt.hash(user.password, 10);
         
+        if (await this.findByUsername(user.username)) {
+            throw new UnauthorizedException("Korisničko ime je u upotrebi.");
+        }
+
         const newUser = {
             username: user.username,
             email: user.email,

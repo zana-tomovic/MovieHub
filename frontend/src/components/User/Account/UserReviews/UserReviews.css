@@ -29,6 +29,10 @@
   outline: none;
 }
 
+.review-edit {
+  position: relative;
+}
+
 .review-buttons {
   position: absolute;
   right: 10px;  
@@ -37,4 +41,8 @@
   gap: 4px;
 }
 
-
+.buttons {
+  position: absolute;
+  bottom: 5;
+  right: 24px;
+}
