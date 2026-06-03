@@ -9,7 +9,7 @@ export class UserController {
 
     @Get()
     async getAll() {
-        return await this.userService.findAllUsers();
+        return await this.userService.findAll();
     }
 
     @UseGuards(AuthGuard)
@@ -24,7 +24,7 @@ export class UserController {
     }
     
     @UseGuards(AuthGuard)
-    @Patch('/update')
+    @Patch()
     update(@Body() user: Partial<User>) {
         return this.userService.update(user);
     }

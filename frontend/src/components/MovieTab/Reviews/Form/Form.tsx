@@ -2,59 +2,51 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import "./Form.css"
 
-const Form = ({ movieId }: { movieId?: string }) => {
-  const [rating, setRating] = useState<number>();
-  const [comment, setComment] = useState('');
-  const [username, setUsername] = useState('');
+const Form = ({ 
+    movieKey,
+    review, 
+    username,
+    onCancel 
+  }: { 
+    movieKey?: string, 
+    review?: any,
+    username?: string,
+    onCancel?: () => void 
+  }) => {
+  const [rating, setRating] = useState<number>(review?.rating || 0);
+  const [comment, setComment] = useState(review?.comment || '');
+
+  const commentRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    
-    axios.get(`http://localhost:3000/auth/loggedUser`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then((res) => {
-      if (res.data) {
-        setUsername(res.data.username);
+    if (review) {
+      setRating(review.rating);
+      setComment(review.comment);
+
+      if (commentRef.current) {
+        commentRef.current.innerText = review.comment ?? '';
       }
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-  }, []);
+    }
+  }, [review])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!username) {
-      alert("Morate biti prijavljeni da biste ostavili recenziju.");
-      return;
-    }
-
-    if (!rating) {
-      alert("Molimo vas da odaberete ocenu.");
-      return;
-    }
-
     const token = localStorage.getItem('token');
-    
-    axios.post(`http://localhost:3000/reviews/${movieId}`, 
-    { 
-      rating: Number(rating),
-      comment: comment || null,
-      username: username
-    }, {
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then(() => {
-      window.location.reload();
 
-      setComment('');
-      setRating(0);
-    })
-    .catch((err) => {
-      console.error(err);
-    })
+    if (review) {
+      axios.patch(`http://localhost:3000/reviews`, 
+      { _id: review._id, rating: Number(rating), comment },
+      { headers: { Authorization: `Bearer ${token}` }})
+      .then(() => window.location.reload())
+      .catch(console.error);
+    } else {
+      axios.post(`http://localhost:3000/reviews/${movieKey}`, 
+      { rating: Number(rating), comment, username },
+      { headers: { Authorization: `Bearer ${token}` }})
+      .then(() => window.location.reload())
+      .catch(console.error);
+    }
   } 
 
   return (
@@ -68,6 +60,7 @@ const Form = ({ movieId }: { movieId?: string }) => {
               name="rating"
               id={`star-${num}`}
               value={num}
+              checked={rating === num}
               onChange={() => setRating(num)}
             />
             <label htmlFor={`star-${num}`}>★</label>          
@@ -76,15 +69,22 @@ const Form = ({ movieId }: { movieId?: string }) => {
         )} 
         </div>
 
-        <div className="comment">
-          <textarea 
-            placeholder="Podijeli svoje misljenje sa nama..." 
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
+        <div className="comment-box">
+          <div 
+            ref={commentRef}
+            className="comment"
+            contentEditable={true}
+            suppressContentEditableWarning={true}
+            data-placeholder="Share your thoughts with us..."
+            onInput={(e) => setComment(e.currentTarget.innerText)}
+          ></div>
         </div>
-
-        <button type="submit" id="btnSubmit">Podijeli</button>
+        <div className="review-form-buttons">
+          <button type="submit">Save</button>
+          {review && onCancel && (
+            <button type="button" onClick={onCancel}>Cancel</button>
+          )}
+        </div>
       </form>
     </div>
   )

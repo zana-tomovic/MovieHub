@@ -1,0 +1,13 @@
+.home {
+    background: rgb(0, 0, 0);
+}
+
+.home-items {
+    padding-top: 85px;
+}
+
+.home-recs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

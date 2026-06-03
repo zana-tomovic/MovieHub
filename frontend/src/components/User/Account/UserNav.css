@@ -1,0 +1,37 @@
+.usernav {
+    display: flex;
+    flex-direction: row;
+    background: rgba(36, 36, 36);
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-top: 40px;
+    padding-left: 20px;
+    gap: 20px;
+}
+
+.navbar button {
+    text-align: left;
+    width: 200px;
+    padding: 14px;
+    color: #ffff;
+    background: none;
+    border-radius: 12px;
+}
+
+.navbar button:focus {
+    background: rgb(82, 82, 82);   
+    outline: none;
+}
+
+.navbar button.active {
+    background: rgb(56, 56, 56);   
+}
+
+.page {
+    padding-top: 40px;
+    padding-left: 40px;
+}

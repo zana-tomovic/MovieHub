@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
   
     if (!username || !email || !password) {
-      setError('Molimo Vas popunite sva polja.');
+      setError('Please fill every field.');
       return;
     }
 
@@ -33,7 +33,7 @@ const Register = () => {
     })
     .catch((error) => {
       if (error.response?.status === 401) {
-        setError("Korisničko ime je u upotrebi.");
+        setError("Username is not available.");
       }
     })
   }
@@ -42,10 +42,10 @@ const Register = () => {
     <div id="register">
       <div id="register-left">
         <form onSubmit={handleSubmit}>
-          <p id="message">Dobrodošli na <b>MovieHub</b>! <br /> Kreirajte svoj nalog za bolji doživljaj.</p>
+          <p id="message">Welcome to <b>MovieHub</b>! <br />Create your user account for better experience.</p>
           
           <div id="username">
-            <p className="label">Korisničko ime</p>
+            <p className="label">Username</p>
             <input 
               type="text" 
               placeholder="" 
@@ -65,7 +65,7 @@ const Register = () => {
           </div>
 
           <div id="pass">
-            <p className="label">Lozinka</p>
+            <p className="label">Password</p>
             <input 
               type={showPassword ? 'text' : 'password'}
               placeholder="" 
@@ -75,7 +75,7 @@ const Register = () => {
             <button
               type="button"
               id="btnVisibility"
-              aria-label="Prikaži lozinku"
+              aria-label="Show password"
               onClick={() => setShowPassword(!showPassword)}
             >
               <img src={showPassword ? visibilityIcon : visibilityOffIcon} />
@@ -84,9 +84,9 @@ const Register = () => {
 
           {error && <p style={{color: 'red'}}>{error}</p>}
 
-          <button type="submit" id="btnRegister">Registruj se</button>
+          <button type="submit" id="btnRegister">Register.</button>
 
-          <p>Imaš nalog? <a href="/login">Prijavi se.</a> </p>
+          <p>Already have an account? <a href="/login">Sign in.</a> </p>
         </form>
       </div>
 

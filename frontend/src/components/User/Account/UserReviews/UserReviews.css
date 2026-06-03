@@ -5,15 +5,13 @@
 
 #movie {
   font-size: 14px;
+  color: #ffff;
+  white-space: nowrap;
 }
 
 #messageNoReviews {
   padding-left: 20px;
   font-size: 14px;
-}
-
-.userReviews button {
-  padding-right: 4px;
 }
 
 .userReviews button img {
@@ -29,20 +27,36 @@
   outline: none;
 }
 
-.review-edit {
-  position: relative;
-}
-
 .review-buttons {
   position: absolute;
-  right: 10px;  
-  top: -10px;
-  display: flex;
-  gap: 4px;
+  right: 25px;  
+  top: -20px;
 }
 
 .buttons {
   position: absolute;
-  bottom: 5;
-  right: 24px;
+  right: -15px;
 }
+
+.comment {
+  width: 100%;
+  height: 100px;
+  background-color: rgba(40, 40, 40, 0.5);
+  border-radius: 22px;
+  box-sizing: border-box;
+  padding: 15px;
+  font: 1.25rem / 1.5 sans-serif;
+  font-size: 14px;
+}
+
+.comment:focus {
+  outline: none;
+}
+
+.review-item .review-form {
+  padding: 0;
+  padding-bottom: 40px;
+  margin: 0;
+}
+
+

@@ -1,0 +1,41 @@
+.navBar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    background-color: transparent;
+    z-index: 1000;
+}
+
+.navbar-items {
+    display: flex;
+    align-items: center;
+    gap: 60px;    
+}
+
+.pages {
+    display: flex;
+    gap: 20px;
+}
+
+.userLoggedIn,
+.userNotLoggedIn {
+    display: flex;
+    gap: 20px;
+}  
+
+.navBar a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.logo a {
+    font-size: 24px;
+}

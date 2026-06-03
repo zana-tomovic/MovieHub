@@ -1,0 +1,41 @@
+.save-seen {
+    display: flex;
+    flex-direction: row;
+
+    margin-top: 40px;
+
+    width: fit-content;
+
+    border-radius: 25px;
+
+    background-color: rgba(44, 44, 44, 0.4);
+
+    overflow: hidden;
+}
+
+.save-seen button,
+.save-seen button:focus {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+
+    padding: 12px 15px;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.save-seen button:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.save-seen img {
+    height: 25px;
+    padding: 4px;
+}
+
+.seen img {
+    padding-left: 0;
+}

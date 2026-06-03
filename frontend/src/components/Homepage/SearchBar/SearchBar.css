@@ -3,7 +3,7 @@
     flex-direction: column; 
     align-items: center;    
     min-height: 100vh;
-    padding: 62px 25px;
+    padding: 86px 25px;
     background-color: rgba(36, 36, 36);
 }
 
@@ -25,6 +25,7 @@
     height: 48px;
     padding: 12px;
     margin-right: 10px;
+    color: #ffff;
     font-size: 14px;
     border: 0.5px solid rgb(124, 124, 124);
     border-radius: 12px;
@@ -38,6 +39,7 @@
     padding: 10px;
     font-size: 14px;
     border-radius: 12px;
+    color: #ffff;
     background: rgba(185, 0, 0, 0.815);
 }
 
@@ -52,6 +54,8 @@
     border-radius: 12px;
     padding: 4px;
     font-size: 12.5px;
+    color: #ffff;
+    background: #353535;
 }
 
 #movie-grid {

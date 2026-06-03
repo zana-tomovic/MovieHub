@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
   
     if (!username || !password) {
-      setError('Molimo Vas popunite sva polja.');
+      setError('Please fill in all fields.');
       return;
     }
 
@@ -31,7 +31,7 @@ const Login = () => {
       navigate("/");
     })
     .catch((error) => {
-      setError("Pogrešna lozinka ili korisničko ime.");
+      setError("Incorrect password or username.");
     })
 
     setError('');
@@ -41,10 +41,10 @@ const Login = () => {
     <div id="login">
       <div id="login-left">
         <form onSubmit={handleSubmit}>
-          <p id="message">Dobrodošli nazad na <b>MovieHub</b>! Prijavite se kako biste nastavili.</p>
+          <p id="message">Welcome back to <b>MovieHub</b>! Sign in to continue.</p>
 
           <div id="username">
-            <p className="label">Korisničko ime</p>
+            <p className="label">Username</p>
             <input 
               type="text" 
               placeholder="" 
@@ -54,7 +54,7 @@ const Login = () => {
           </div>
 
           <div id="pass">
-            <p className="label">Lozinka</p>
+            <p className="label">Password</p>
             <input 
             type={showPassword ? 'text' : 'password'}
             placeholder="" 
@@ -64,7 +64,7 @@ const Login = () => {
             <button
               type="button"
               id="btnVisibility"
-              aria-label="Prikaži lozinku"
+              aria-label="Show password"
               onClick={() => setShowPassword(!showPassword)}
             >
               <img src={showPassword ? visibilityIcon : visibilityOffIcon} />
@@ -73,9 +73,9 @@ const Login = () => {
 
           {error && <p style={{color: 'red'}}>{error}</p>}
 
-          <button type="submit" id="btnLogin">Prijavi se</button>
+          <button type="submit" id="btnLogin">Sign in</button>
 
-          <p>Nemaš nalog? <a href="/register">Registruj se.</a> </p>
+          <p>Do not have an account? <a href="/register">Register.</a> </p>
         </form>
       </div>
 

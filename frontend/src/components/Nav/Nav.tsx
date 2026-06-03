@@ -36,20 +36,27 @@ const Nav = () => {
 
   return (
     <div className="navBar">
-      <div className="logo">
-        <a href="/"><b>MovieHub</b></a>
+      <div className="navbar-items">
+        <div className="logo">
+          <a href="/"><b>MovieHub</b></a>
+        </div>
+
+        <div className="pages">
+          <a href="/">Home</a>
+          <a href="/search">Search movies</a>
+        </div>
       </div>
 
-      <div className="nav">
+      <div className="user">
         { isLoggedIn ? (
           <div className="userLoggedIn">
-            <a href="#" onClick={logout}>Odjavi se</a>
-            <a href="" onClick={() => navigate(`/account/${username}`)}>Nalog</a>
+            <a href="#" onClick={logout}>Sign out</a>
+            <a href="" onClick={() => navigate(`/user/${username}`)}>Your account</a>
           </div>
         ) : (
           <div className="userNotLoggedIn">
-            <a href="/login">Prijavi se</a>
-            <a href="/register">Registruj se</a>
+            <a href="/login">Sign in</a>
+            <a href="/register">Create an account</a>
           </div>
         )}
       </div>

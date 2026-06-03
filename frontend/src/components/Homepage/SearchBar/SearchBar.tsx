@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
-import Nav from './Nav';
+import Nav from '../../Nav/Nav';
 
 const SearchBar = () => {
   const [name, setName] = useState("");
@@ -13,7 +13,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
   
   const fetchMovies = async (title: string) => {
-    const res = await fetch(`http://localhost:3000/movies?title=${title}`)
+    const res = await fetch(`http://localhost:3000/movies/search/?title=${title}`)
     const data = await res.json();
     setResults(data);
   }
@@ -33,7 +33,7 @@ const SearchBar = () => {
     if (rating) params.append("rating", rating);
     if (genre) params.append("genre", genre);
 
-    const res = await fetch(`http://localhost:3000/movies/search?${params.toString()}`)
+    const res = await fetch(`http://localhost:3000/movies/filter/?${params.toString()}`)
     const data = await res.json();
     setResults(data);
   }
@@ -46,7 +46,7 @@ const SearchBar = () => {
           <input 
               id="search-input"
               type="text"
-              placeholder="Pretraži filmove..."
+              placeholder="Search movies..."
               value={name}
               onChange={(e) => setName(e.target.value)} >
           </input>
@@ -60,11 +60,11 @@ const SearchBar = () => {
             value={decade}
             onChange={(e) => setDecade(e.target.value)}
           >
-            <option value="" disabled hidden>Godina</option>
+            <option value="" disabled hidden>Year</option>
             <option 
-              value="Novi"
+              value="New"
             >
-              Novi
+              New
             </option>
             <option
               value="2020s"
@@ -87,16 +87,16 @@ const SearchBar = () => {
             value={rating}
             onChange={(e) => setRating(e.target.value)}
           >
-            <option value="" disabled hidden>Ocjena</option>
+            <option value="" disabled hidden>Rating</option>
             <option 
-              value="Najvisočiji"
+              value="Highest"
             >
-              Najvisočiji
+              Highest
             </option>
             <option 
-              value="Najniži"
+              value="Lowest"
             >
-              Najniži
+              Lowest
             </option>
           </select>
 
@@ -104,7 +104,7 @@ const SearchBar = () => {
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
           >
-            <option value="" disabled hidden>Žanr</option>
+            <option value="" disabled hidden>Genre</option>
             {genres.map((g) => (
               <option 
                 key={g} 

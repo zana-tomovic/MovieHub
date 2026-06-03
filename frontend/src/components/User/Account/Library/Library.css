@@ -1,0 +1,13 @@
+.library-page {
+    display: flex;
+    flex-direction: column;
+}
+
+#library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 800px; 
+    padding: 20px;
+}

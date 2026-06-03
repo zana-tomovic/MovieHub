@@ -1,46 +1,57 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 import "./Reviews.css";
-import Form from './Form/Form';
 
-const Reviews = ({ movieId }: { movieId?: string }) => {
-  const [reviews, setReviews] = useState<any[]>([]);
+const batch_size = 4;
+
+const Reviews = ({ movieKey }: { movieKey: string | undefined }) => {
+  const [ reviews, setReviews ] = useState<any>([]);
+  const [ visible, setVisible ] = useState<any>([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/reviews/${movieId}`)
+    getReviews();
+  }, [])
+
+  const getReviews = () => {
+    fetch(`http://localhost:3000/reviews/${movieKey}`)
       .then(res => res.json())
       .then(data => {
         if (data) {
           setReviews(data);
+          setVisible(data.slice(0, batch_size));
         }
       })
       .catch((err) => {console.error(err)});
-  }, [ movieId ]);
+  }
 
-  if (!reviews || reviews.length == 0) return <Form movieId={movieId} />;
+  const loadMore = () => {
+    const nextEnd = visible.length + batch_size;
+    setVisible(reviews.slice(0, nextEnd));
+  }
 
   return (
     <div>
       <div className="reviews-list">
-        {reviews.map((r, index) => (
+        {visible.map((v, index) => (
           <div key={index}> 
             <div className="review">
               <div className="user-rating">
-                <span id="username">Recenzija od <b>{r.username}</b></span>
+                <span id="username">Review from <b>{v.username}</b></span>
                 <span className="rating">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <span key={star}>
-                      {star <= r.rating ? "★" : ""}
+                      {star <= v.rating ? "★" : ""}
                     </span>
                   ))}
                 </span>
               </div>
-              <p id="comment">{r.comment}</p>              
+              <p id="comment">{v.comment}</p>              
             </div>
-            <hr />
           </div>
         ))}
       </div>
-      <Form movieId={movieId} />
+      <div className="reviewBtn"> 
+        <button id="loadBtn" onClick={loadMore}>Load more...</button>
+      </div>
     </div>
   )
 }

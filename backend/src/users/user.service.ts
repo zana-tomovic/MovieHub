@@ -12,7 +12,7 @@ export class UserService {
                 private reviewService: ReviewService
     ) {}
         
-    async findAllUsers() {
+    async findAll() {
         const cursor = await this.appService.db.query(aql `for u in users return u`);
         return await cursor.all();
     }
@@ -26,7 +26,7 @@ export class UserService {
         const hashPass = await bcrypt.hash(user.password, 10);
         
         if (await this.findByUsername(user.username)) {
-            throw new UnauthorizedException("Korisničko ime je u upotrebi.");
+            throw new UnauthorizedException("The username is not available.");
         }
 
         const newUser = {
@@ -80,6 +80,6 @@ export class UserService {
 
         await this.appService.db.query(`for u in users filter u.username == @username remove u in users`, {username});
 
-        return { message: 'Nalog je izbrisan.'};
+        return { message: 'Account has been deleted.'};
     }
 }

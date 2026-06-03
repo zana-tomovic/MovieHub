@@ -3,7 +3,6 @@
   flex-direction: column;
   width: 420px;
   padding: 10px;
-  padding-bottom: 100px;
   padding-left: 60px;
 }
 
@@ -17,21 +16,34 @@
 
 .user-rating {
   display: flex;
-  gap: 10px;
+  gap: 20px;
 }
 
 .rating span {
   font-size: 22px;
-  line-height: 0.8;
+  line-height: 1;
   color: rgb(214, 182, 0);
 }
 
 #username {
   font-size: 14px;
+  color: #ffff;
+  white-space: nowrap;
 }
 
 #comment {
   font-size: 16px;
   margin-left: 2px;
   margin-top: 10px;
+}
+
+.reviewBtn {
+  padding-left: 60px;
+  padding-bottom: 100px;
+}
+
+#loadBtn {
+  font-size: 14px;
+  color: #ffff;
+  background:#353535;
 }

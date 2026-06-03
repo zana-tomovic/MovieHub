@@ -4,7 +4,7 @@ import visibilityIcon from '../../../../assets/images/visibility.png';
 import visibilityOffIcon from '../../../../assets/images/visibility-off.png';
 import "./EditAcc.css";
 
-const EditAcc = ({user}: {user?: any}) => {
+const EditAcc = ({user}: {user: any}) => {
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [showPassword1, setShowPassword1] = useState(false);
@@ -17,7 +17,7 @@ const EditAcc = ({user}: {user?: any}) => {
   
     if (password1 || password2) {
       if (password1 !== password2) {
-        setError('Lozinke se ne podudaraju.');
+        setError('Passwords do not match. Please try again.');
         return;
       }
     }
@@ -33,11 +33,11 @@ const EditAcc = ({user}: {user?: any}) => {
 
     const token = localStorage.getItem('token');
     
-    axios.patch(`http://localhost:3000/users/update`, updatedUser, {
+    axios.patch(`http://localhost:3000/users`, updatedUser, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(() => {
-      alert("Lozinka je promijenjena.");
+      alert("Password has been saved.");
     })
     .catch((error) => {
       console.log(error.message);
@@ -58,7 +58,7 @@ const EditAcc = ({user}: {user?: any}) => {
         </div>
 
         <div id="pass1">
-            <p className="label">Lozinka</p>
+            <p className="label">Password</p>
             <input 
               type={showPassword1 ? 'text' : 'password'}
               placeholder="" 
@@ -68,7 +68,7 @@ const EditAcc = ({user}: {user?: any}) => {
             <button
               type="button"
               className="btnVisibility"
-              aria-label="Prikaži lozinku"
+              aria-label="Show password"
               onClick={() => setShowPassword1(!showPassword1)}
             >
               <img src={showPassword1 ? visibilityIcon : visibilityOffIcon} />
@@ -76,7 +76,7 @@ const EditAcc = ({user}: {user?: any}) => {
         </div>
 
         <div id="pass2">
-            <p className="label">Potvrdite lozinku</p>
+            <p className="label">Repeat password</p>
             <input 
               type={showPassword2 ? 'text' : 'password'}
               placeholder="" 
@@ -86,7 +86,7 @@ const EditAcc = ({user}: {user?: any}) => {
             <button
               type="button"
               className="btnVisibility"
-              aria-label="Prikaži lozinku"
+              aria-label="Show password"
               onClick={() => setShowPassword2(!showPassword2)}
             >
               <img src={showPassword2 ? visibilityIcon : visibilityOffIcon} />
@@ -95,7 +95,7 @@ const EditAcc = ({user}: {user?: any}) => {
 
         {error && <p style={{color: 'red'}}>{error}</p>}
 
-        <button type="submit" id="btnSubmit">Sacuvaj</button>
+        <button type="submit" id="btnSubmit">Save</button>
       </form>
     </div>
   )
