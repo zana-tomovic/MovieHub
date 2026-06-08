@@ -67,6 +67,14 @@ export class MovieRecService {
                 return u
             )
 
+            let savedMovies = (
+                for s in isSaved
+                filter s._from == user._id
+                for m in movies
+                filter concat("movies/", m._key) == s._to 
+                return m
+            )
+
             let seenMovies = (
                 for s in isSeen
                 filter s._from == user._id
@@ -75,14 +83,29 @@ export class MovieRecService {
                 return m
             ) 
 
+            let highRateMov = (
+                for m in movies
+                for v in outbound m hasReview
+                filter v.username == user.username
+                sort v.rating desc    
+                return m
+            )
+            
+            let excludedKeys = unique(
+                append(
+                    (for m in savedMovies return m._key),
+                    (for m in seenMovies return m._key)
+                )
+            )
+
             for m in movies
-            for s in seenMovies
-            filter m._key != s._key
-            let common = length(intersection(split(s.Genre, ","), split(m.Genre, ",")))
+            for h in highRateMov
+            let common = length(intersection(split(h.Genre, ","), split(m.Genre, ",")))
             filter common > 0
+            filter m._key not in excludedKeys
             sort common desc
             limit 10 
-            return m
+            return distinct m
         `
 
         const cursor = await this.appService.db.query(query, { username });
