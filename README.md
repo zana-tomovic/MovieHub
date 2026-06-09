@@ -8,4 +8,3 @@ Izabrane platforme:
 - Za frontend je React Vite.
 - Koristi se nerelaciona baza podataka ArangoDB.
 
-Za pokretanje: docker-compose up --build. 
