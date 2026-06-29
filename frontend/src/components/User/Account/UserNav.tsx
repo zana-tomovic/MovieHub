@@ -1,11 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import "../Account/UserNav.css";
 
 import UserReviews from './UserReviews/UserReviews';
 import Library from './Library/Library';
-import EditAcc from './EditAcc/EditAcc';
+import Edit from './Edit/Edit';
 
 const UserNav = () => {
   const { username } = useParams();
@@ -50,17 +50,23 @@ const UserNav = () => {
 
   return (
     <div className="usernav">
-      <div className="navbar">
+      <div className="usernav-navbar">
         <button
          className={mode === "reviews" ? "active" : ""}
          onClick={() => setMode("reviews")}
         >
             My reviews
         </button>
-        <button onClick={() => setMode("library")}>
+        <button 
+          className={mode === "library" ? "active" : ""}
+          onClick={() => setMode("library")}
+        >
             Library
         </button>
-        <button onClick={() => setMode("edit")}>
+        <button 
+          className={mode === "edit" ? "active" : ""}
+          onClick={() => setMode("edit")}
+        >
             Edit profile
         </button>
         <button onClick={deleteAcc}>
@@ -70,7 +76,7 @@ const UserNav = () => {
       <div className="page">
         {mode === "reviews" && <UserReviews username={username}/>}
         {mode === "library" && <Library username={username}/>}
-        {mode === "edit" && <EditAcc user={user}/>}
+        {mode === "edit" && <Edit user={user}/>}
       </div>
     </div>
   )

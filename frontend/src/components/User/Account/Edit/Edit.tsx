@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import visibilityIcon from '../../../../assets/images/visibility.png';
 import visibilityOffIcon from '../../../../assets/images/visibility-off.png';
-import "./EditAcc.css";
+import "./Edit.css";
 
-const EditAcc = ({user}: {user: any}) => {
+const Edit = ({user}: {user: any}) => {
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [showPassword1, setShowPassword1] = useState(false);
@@ -44,11 +44,18 @@ const EditAcc = ({user}: {user: any}) => {
     })
   }
 
+  const addImage = () => {
+  }
+
   return (
-    <div>
+    <div className="edit">
       <form onSubmit={handleSubmit}>
+        <div className="profile-photo">
+  
+        </div>
+
         <div id="email">
-          <p className="label">Email</p>
+          <p>Email</p>
           <input
             type="email"
             placeholder=""
@@ -58,7 +65,7 @@ const EditAcc = ({user}: {user: any}) => {
         </div>
 
         <div id="pass1">
-            <p className="label">Password</p>
+            <p>Password</p>
             <input 
               type={showPassword1 ? 'text' : 'password'}
               placeholder="" 
@@ -76,7 +83,7 @@ const EditAcc = ({user}: {user: any}) => {
         </div>
 
         <div id="pass2">
-            <p className="label">Repeat password</p>
+            <p>Repeat password</p>
             <input 
               type={showPassword2 ? 'text' : 'password'}
               placeholder="" 
@@ -101,4 +108,4 @@ const EditAcc = ({user}: {user: any}) => {
   )
 }
 
-export default EditAcc
+export default Edit

@@ -2,12 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { AppService } from 'src/app.service';
 import { Review } from './review';
 import { MovieService } from 'src/movies/services/movie.service';
+import { MovieUserService } from 'src/movies/services/movie-user.service';
 import { aql } from 'arangojs';
 
 @Injectable()
 export class ReviewService {
     constructor(private readonly appService: AppService,
-                private movieService: MovieService) {}
+                private movieService: MovieService,
+                private movieUserService: MovieUserService
+            ) {}
 
     async findReviews(movieKey?: string) {
         const query = `
@@ -64,6 +67,8 @@ export class ReviewService {
         }
 
         await this.movieService.updateRating(movieKey);
+
+        await this.movieUserService.setMovieToSeen(movieKey, reviewData.username);
 
         return newReview;
     }

@@ -3,6 +3,23 @@
     flex-direction: column;
 }
 
+.filters button {
+    padding: 10px 15px;
+    background: #353535;
+    color: #fff;
+    font-size: 15px;
+}
+
+.filters button,
+.filters button:focus {
+    box-shadow: none;
+    border: none;
+}
+
+.filters button:hover {
+    background: rgb(36, 36, 36);   
+}
+
 #library-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));

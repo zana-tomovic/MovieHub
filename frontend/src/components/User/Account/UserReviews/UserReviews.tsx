@@ -46,15 +46,19 @@ const UserReviews = ({ username }: { username?: string }) => {
               />
             ) : (
               <div className="review">
+                <div className="review-buttons">
+                  <button onClick={() => setEditingReview(r)}><img src={editIcon} /></button>
+                  <button onClick={() => deleteReview(r._key)}><img src={deleteIcon} /></button>
+                </div>
                 <div className="movie-rating">
                   <span id="movie">{r.movie}</span>
-                  <span className="rating">
-                    {[1,2,3,4,5].map(star => <span key={star}>{star <= r.rating ? "★" : ""}</span>)}
+                   <span className="rating">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span key={star}>
+                        {star <= r.rating ? "★" : ""}
+                      </span>
+                    ))}
                   </span>
-                  <div className="review-buttons">
-                    <button onClick={() => setEditingReview(r)}><img src={editIcon} /></button>
-                    <button onClick={() => deleteReview(r._key)}><img src={deleteIcon} /></button>
-                  </div>
                 </div>
                 <p id="comment">{r.comment}</p>
               </div>

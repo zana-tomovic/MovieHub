@@ -110,15 +110,20 @@ const Library = ({ username }: { username?: string }) => {
         </button>
       </div>
       <div id="library-grid">
-        {getActiveList().map((movie: any) => (
-          <div 
-            key = {movie._key}
-            className="movie-card"
-            onClick={() => navigate(`/movie/${movie._key}`)}
-          >
-            <img src={movie.Poster_Url} alt={movie.Title} />
-          </div>
-        ))}
+        {getActiveList().map((movie: any) => {
+          const movieGenres = movie.Genre?.split(/,\s*/) ?? [];
+          return (
+            <div 
+              key = {movie._key}
+              className="movie-card"
+              onClick={() => navigate(`/movie/${movie._key}`)}
+            >
+              <img src={movie.Poster_Url} alt={movie.Title} />
+              <p id="movie-card-title">{movie.Title}</p>
+              <p id="movie-card-genre">{movieGenres[0]}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   )

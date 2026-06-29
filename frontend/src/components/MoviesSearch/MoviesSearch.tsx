@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import './SearchBar.css';
-import Nav from '../../Nav/Nav';
+import './MoviesSearch.css';
+import Nav from '../Nav/Nav';
 
-const SearchBar = () => {
-  const [name, setName] = useState("");
+const MoviesSearch = () => {
   const [decade, setDecade] = useState("");
   const [rating, setRating] = useState("");
   const genres = ["Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Mystery", "Romance", "Sci-Fi", "Sport", "Thriller", "Western"];
@@ -12,19 +11,9 @@ const SearchBar = () => {
   const [results, setResults] = useState<any[]>([]);
   const navigate = useNavigate();
   
-  const fetchMovies = async (title: string) => {
-    const res = await fetch(`http://localhost:3000/movies/search/?title=${title}`)
-    const data = await res.json();
-    setResults(data);
-  }
-
-  const handleSearchClick = () => {
-    fetchMovies(name);
-  }
-
   useEffect(() => {
     handleSearchByChoice();
-  }, [decade, rating, genre])
+  }, [results])
 
   const handleSearchByChoice = async () => {
     const params = new URLSearchParams
@@ -41,20 +30,7 @@ const SearchBar = () => {
   return (
     <div id="search-page">
       <Nav />
-      <div id="search-group">
-        <div id="search-input-group">
-          <input 
-              id="search-input"
-              type="text"
-              placeholder="Search movies..."
-              value={name}
-              onChange={(e) => setName(e.target.value)} >
-          </input>
-          <button id="search-button" onClick={handleSearchClick}>
-              Search
-          </button> 
-        </div>
-
+      <div id="search-group">        
         <div className="filters">
           <select id="decade"
             value={decade}
@@ -85,8 +61,8 @@ const SearchBar = () => {
 
           <select id="rating"
             value={rating}
-            onChange={(e) => setRating(e.target.value)}
-          >
+            onChange={(e) => setRating(e.target.value)}        
+            >
             <option value="" disabled hidden>Rating</option>
             <option 
               value="Highest"
@@ -118,18 +94,23 @@ const SearchBar = () => {
       </div>
 
       <div id="movie-grid">
-        {results.map((movie: any) => (
+        {results.map((movie: any) => {
+          const movieGenres = movie.Genre?.split(/,\s*/) ?? [];
+          return (
             <div
               key={movie._key}
               className="movie-card"
               onClick={() => navigate(`/movie/${movie._key}`)}
             >
               <img src={movie.Poster_Url} alt={movie.Title}/>
+              <p id="movie-card-title">{movie.Title}</p>
+              <p id="movie-card-genre">{movieGenres[0]}</p>
             </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   )
 }
 
-export default SearchBar
+export default MoviesSearch

@@ -3,7 +3,7 @@
     flex-direction: row;
 
     margin-top: 40px;
-
+    padding: 0 12px;
     width: fit-content;
 
     border-radius: 25px;
@@ -19,8 +19,7 @@
     border: none;
     outline: none;
     box-shadow: none;
-
-    padding: 12px 15px;
+    padding: 15px 12px;
 
     cursor: pointer;
 
@@ -33,9 +32,4 @@
 
 .save-seen img {
     height: 25px;
-    padding: 4px;
-}
-
-.seen img {
-    padding-left: 0;
 }

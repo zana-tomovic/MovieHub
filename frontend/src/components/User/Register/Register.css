@@ -1,7 +1,7 @@
 #register {
     display: flex;
     height: 100vh;
-    background-color: rgba(36, 36, 36);
+    background-color: rgb(0, 0, 0);
 }
 
 #register-left {
@@ -30,83 +30,23 @@
     height: 100%;
     
     background: linear-gradient(to right, 
-                rgba(36, 36, 36) 5%,
-                rgba(36, 36, 36, 0.8) 25%,
+                rgb(0, 0, 0) 5%,
+                rgba(0, 0, 0, 0.8) 25%,
                 rgba(0, 0, 0, 0) 100%);
 
     opacity: 10;
 }
 
-form {
-    width: 100%;
-    max-width: 100%;
-    margin-left: 42px;
-    padding: 5px;
-}
-
-#message {
-   margin-bottom: 62px;
-   font-size: 26px;
-}
-
-#username,
-#email, 
-#pass {
+#email {
     position: relative;
     margin-bottom: 20px;
     padding: 2px;
 }
 
-#pass {
-    align-items: center;
-}
-
-.label {
-    position: absolute;
-    left: 25px;
-    top: 0px;
-    transform: translateY(-50%);
-    background-color: rgba(36, 36, 36);
-    margin: 0px;
-    padding: 0 6px;
-    font-size: 14px;
-    color: rgb(124, 124, 124);
-}
-
-input {
-    height: 48px;
-    padding: 0 50px 0 14px;
-    font-size: 14px;
-    color: #ffff;
-    background: none;
-    border-radius: 12px;
-    border: 2px solid rgb(124, 124, 124);
-    box-sizing: border-box;
-}
-
-#btnVisibility {
-    position: absolute;
-    right: 5px;
-    top: 4px;
-}
-
-#btnVisibility, 
-#btnVisibility:focus {
-    background: none;
-    border: none;
-    box-shadow: none;
-    outline: none;
-}
-
-#btnVisibility img {
-    width: 25px;
-    height: 25px;
-}
-
 #btnRegister {
     width: 42%;
     margin-top: 20px;
-    color: #ffff;
+    color: #fff;
     background: rgba(185, 0, 0, 0.815);
 }
 

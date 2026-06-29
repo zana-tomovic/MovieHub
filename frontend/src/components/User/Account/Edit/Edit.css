@@ -4,31 +4,36 @@ form {
     padding: 20px;
 }
 
+.profile-photo img {
+    width: 140px;
+    border-radius: 50%;
+}
+
 #pass1, #pass2 {
     position: relative;
     margin-bottom: 20px;
 }
 
-.label {
+.edit p {
     position: absolute;
     left: 25px;
     top: 0px;
     transform: translateY(-50%);
-    background-color: rgba(36, 36, 36);
+    background-color: rgb(26, 26, 26);
     margin: 0px;
     padding: 0 6px;
     font-size: 14px;
-    color: rgb(124, 124, 124);
+    color: rgb(216, 216, 216);
 }
 
-input {
+.edit input {
     height: 50px;
     width: 400px;
     padding: 20px 44px 20px 20px;
     font-size: 14px;
     background: none;
     border-radius: 12px;
-    border: 2px solid rgb(124, 124, 124);
+    border: 2px solid rgb(216, 216, 216);
     box-sizing: border-box;
 }
 
@@ -52,10 +57,10 @@ input {
 }
 
 #btnSubmit {
-    position: absolute;
-    width: fit-content;
-    padding: 12px 20px;
+    display: block;
     margin-top: 10px;
-    color: #ffff;
-    background: #353535;
+    margin-left: auto;
+    padding: 12px 20px;
+    color: #fff;
+    background: #6b6b6b;
 }

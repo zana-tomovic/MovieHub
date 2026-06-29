@@ -13,7 +13,13 @@
     z-index: 1000;
 }
 
-.navbar-items {
+.navBar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navBar-items {
     display: flex;
     align-items: center;
     gap: 60px;    
@@ -22,6 +28,10 @@
 .pages {
     display: flex;
     gap: 20px;
+}
+
+.user {
+    align-items: flex-end;
 }
 
 .userLoggedIn,
@@ -34,8 +44,54 @@
     color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .logo a {
     font-size: 24px;
 }
+
+.search-box {
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+
+    background: #fff;
+    color: #000;
+
+    padding-left: 40px;
+    cursor: pointer;
+
+    transition: all 0.4s ease;
+}
+
+.search-box:hover input,
+.search-box input:focus {
+    width: 240px;
+    border-radius: 20px;
+    cursor: text;
+    outline: none;
+}
+
+.search-box img {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+
+    width: 18px;
+    height: 18px;
+
+    pointer-events: none;
+}
+

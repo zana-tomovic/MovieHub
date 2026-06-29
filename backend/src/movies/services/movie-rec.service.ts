@@ -21,7 +21,7 @@ export class MovieRecService {
         filter common > 0
         sort common desc
         limit 10 
-        return m
+        return distinct m
         `
 
         const cursor = await this.appService.db.query(query);

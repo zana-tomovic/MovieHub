@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import "../Homepage/Slideshow.css";
 import { useNavigate } from 'react-router-dom';
+import "../Homepage/Slideshow.css";
 
 const SlideShow = ({ newMov, interval = 20000 }: { newMov: any[]; interval?: number}) => {
   const [ curr, setCurr ] = useState(0);
@@ -14,8 +14,8 @@ const SlideShow = ({ newMov, interval = 20000 }: { newMov: any[]; interval?: num
     return () => clearInterval(timer);
   }, [newMov.length, interval]);
 
-  const prev = () => setCurr(prev => (prev - 1 + newMov.length) % newMov.length);
-  const next = () => setCurr(prev => (prev + 1 + newMov.length) % newMov.length);
+  // const prev = () => setCurr(prev => (prev - 1 + newMov.length) % newMov.length);
+  // const next = () => setCurr(prev => (prev + 1 + newMov.length) % newMov.length);
 
   if (!newMov.length) return null;
 
@@ -27,8 +27,6 @@ const SlideShow = ({ newMov, interval = 20000 }: { newMov: any[]; interval?: num
       >
         <img src={newMov[curr].Poster_Url2} />
       </div>
-      <button id="slide-btn-prev" onClick={prev}> ‹ </button>
-      <button id="slide-btn-next" onClick={next}> › </button>
       
       <div className="details">
         <p id="movie-title"><b>{newMov[curr].Title}</b></p>

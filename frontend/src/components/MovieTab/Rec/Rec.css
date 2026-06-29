@@ -1,32 +1,49 @@
+@keyframes click-image-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
 .recs {
-    margin: 55px;
-    margin-bottom: 0px;
+    margin: 0 40px;
     padding: 10px;
 }
 
 p {
-    color: #ffff;
+    color: #fff;
+    padding: 10px;
+    font-weight: 550;
+}
+
+.rec-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .rec-nav {
     display: flex;
-    white-space: nowrap;
+    gap: 15px;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-start;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    margin-left: 20px;
-    margin-right: 20px;
-    gap: 10px;
-    padding: 10px;
+    scrollbar-width: none;
+}
+
+.rec-nav::-webkit-scrollbar {
+    display: none;
 }
 
 .rec-card {
-    scroll-snap-align: start;
-    flex: 0 0 160px; 
-    height: 240px;
-    border-radius: 8px;
+    position: relative;
+    flex: 0 0 180px;
+    height: 260px;
     overflow: hidden;
+    border-radius: 12px 12px 0 0; 
     transition: transform 0.2s;
     cursor: pointer;
+    scroll-snap-align: start;
 }
 
 .rec-card:hover {
@@ -36,6 +53,74 @@ p {
 .rec-card img {
     width: 100%;
     height: 100%;
-    display: block;
     object-fit: cover;
+}
+
+.rec-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to top,
+        rgb(0, 0, 0) 4%,
+        rgba(0, 0, 0, 0.8) 20%,
+        rgba(0, 0, 0, 0.2) 40%
+    );
+}
+
+.rec-card p {
+    position: absolute;
+    color: #fff;
+    padding: 2px 12px;
+    z-index: 1;
+}
+
+#rec-card-title {
+    bottom: 15px;
+    font-size: 12.5px;
+    font-weight: 600;
+    white-space: normal;
+}
+
+#rec-card-genre {
+    bottom: 10.5px;
+    margin: 0;
+    font-size: 10px;
+}
+
+.rec-buttons {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rec-buttons button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.rec-buttons button,
+.rec-buttons button:focus {
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.rec-buttons button img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+}
+
+.rec-buttons button.active img {
+    animation: click-image-pulse 0.25s ease-out;
 }

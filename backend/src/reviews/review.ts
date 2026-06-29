@@ -3,6 +3,7 @@ export class Review {
     _id?: string;
     rating: number;
     comment?: string;
+    spoiler?: boolean;
     username: string;
     movie?: string;
 }

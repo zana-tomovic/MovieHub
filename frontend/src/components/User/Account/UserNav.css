@@ -1,10 +1,10 @@
 .usernav {
     display: flex;
     flex-direction: row;
-    background: rgba(36, 36, 36);
+    background: rgb(26, 26, 26);
 }
 
-.navbar {
+.usernav-navbar {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -13,22 +13,31 @@
     gap: 20px;
 }
 
-.navbar button {
-    text-align: left;
+.usernav-navbar button {
+    display: flex;
+    justify-content: flex-start;
     width: 200px;
     padding: 14px;
-    color: #ffff;
+    padding-left: 20px;
+    color: #fff;
     background: none;
     border-radius: 12px;
 }
 
-.navbar button:focus {
-    background: rgb(82, 82, 82);   
+.usernav-navbar button,
+.usernav-navbar button:focus {
+    background: none;
+    border: none;
+    box-shadow: none;
     outline: none;
 }
 
-.navbar button.active {
-    background: rgb(56, 56, 56);   
+.usernav-navbar button:hover {
+    background: rgb(36, 36, 36);   
+}
+
+.usernav-navbar button.active {
+    background: rgb(46, 46, 46);   
 }
 
 .page {

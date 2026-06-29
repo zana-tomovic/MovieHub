@@ -15,17 +15,14 @@ const Form = ({
   }) => {
   const [rating, setRating] = useState<number>(review?.rating || 0);
   const [comment, setComment] = useState(review?.comment || '');
-
-  const commentRef = React.useRef<HTMLDivElement>(null);
+  const [spoiler, setSpoiler] = useState(review?.spoiler || '');
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     if (review) {
       setRating(review.rating);
       setComment(review.comment);
-
-      if (commentRef.current) {
-        commentRef.current.innerText = review.comment ?? '';
-      }
+      setSpoiler(review.spoiler);
     }
   }, [review])
 
@@ -36,13 +33,13 @@ const Form = ({
 
     if (review) {
       axios.patch(`http://localhost:3000/reviews`, 
-      { _id: review._id, rating: Number(rating), comment },
+      { _id: review._id, rating: Number(rating), comment, spoiler },
       { headers: { Authorization: `Bearer ${token}` }})
       .then(() => window.location.reload())
       .catch(console.error);
     } else {
       axios.post(`http://localhost:3000/reviews/${movieKey}`, 
-      { rating: Number(rating), comment, username },
+      { rating: Number(rating), comment, spoiler, username },
       { headers: { Authorization: `Bearer ${token}` }})
       .then(() => window.location.reload())
       .catch(console.error);
@@ -53,7 +50,7 @@ const Form = ({
     <div>
       <form className= "review-form" onSubmit={handleSubmit}> 
         <div className="rating">
-         {[5, 4, 3, 2, 1].map ((num) => (
+         {[1, 2, 3, 4, 5].map ((num) => (
           <React.Fragment key={num}>
             <input
               type="radio"
@@ -70,14 +67,21 @@ const Form = ({
         </div>
 
         <div className="comment-box">
-          <div 
-            ref={commentRef}
+          <textarea
             className="comment"
-            contentEditable={true}
-            suppressContentEditableWarning={true}
-            data-placeholder="Share your thoughts with us..."
-            onInput={(e) => setComment(e.currentTarget.innerText)}
-          ></div>
+            value={comment}
+            placeholder="Share your thoughts with us..."
+            onInput={(e) => { 
+              setComment(e.currentTarget.value),
+              setIsActive(true)
+            }}
+          />
+          {isActive && (
+            <label className="checkbox">
+              <input type="checkbox" onChange={setSpoiler}/>
+              Contains spoilers?
+            </label>
+          )}
         </div>
         <div className="review-form-buttons">
           <button type="submit">Save</button>

@@ -77,7 +77,7 @@ const Homepage = () => {
     <div className="home">
       <Nav />
       <div className="home-items">
-        <SlideShow newMov={newMov} />
+        <SlideShow newMov={newMov} /> 
         <div className="home-recs">
           <Rec recs={recs} mess={"Popular: "}  /> 
           {username && <Rec recs={userRecs} />}

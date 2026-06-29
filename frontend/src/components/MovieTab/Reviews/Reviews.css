@@ -2,39 +2,46 @@
   display: flex;
   flex-direction: column;
   width: 420px;
-  padding: 10px;
-  padding-left: 60px;
+  margin: 50px;
 }
 
 .review {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 25px;
-  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #353535;
+  border-radius: 8px;
+  padding: 15px 20px 20px;
 }
 
 .user-rating {
   display: flex;
-  gap: 20px;
+  gap: 15px;
+}
+
+.user-rating .rating {
+  display: flex;
+  flex-direction: row;
+  line-height: 1;
 }
 
 .rating span {
   font-size: 22px;
-  line-height: 1;
-  color: rgb(214, 182, 0);
+  color: rgb(224, 170, 34);
 }
 
 #username {
   font-size: 14px;
-  color: #ffff;
+  color: #fff;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 #comment {
-  font-size: 16px;
-  margin-left: 2px;
-  margin-top: 10px;
+  font-size: 14px;
+  margin: 0 10px;
+  padding: 0px;
 }
 
 .reviewBtn {
@@ -45,5 +52,5 @@
 #loadBtn {
   font-size: 14px;
   color: #ffff;
-  background:#353535;
+  background: #353535;
 }

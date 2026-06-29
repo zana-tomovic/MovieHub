@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import "./Reviews.css";
+import { useNavigate } from "react-router-dom";
 
 const batch_size = 4;
 
 const Reviews = ({ movieKey }: { movieKey: string | undefined }) => {
   const [ reviews, setReviews ] = useState<any>([]);
   const [ visible, setVisible ] = useState<any>([]);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     getReviews();
@@ -35,11 +38,11 @@ const Reviews = ({ movieKey }: { movieKey: string | undefined }) => {
           <div key={index}> 
             <div className="review">
               <div className="user-rating">
-                <span id="username">Review from <b>{v.username}</b></span>
+                <span id="username" onClick={() => navigate(`users/${v.username}`) }>Review from <b>{v.username}</b></span>
                 <span className="rating">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <span key={star}>
-                      {star <= v.rating ? "★" : ""}
+                      {star <= v.rating ? "★" : "☆"}
                     </span>
                   ))}
                 </span>
@@ -50,7 +53,9 @@ const Reviews = ({ movieKey }: { movieKey: string | undefined }) => {
         ))}
       </div>
       <div className="reviewBtn"> 
-        <button id="loadBtn" onClick={loadMore}>Load more...</button>
+        {visible.length > reviews.length && (
+          <button id="loadBtn" onClick={loadMore}>Load more...</button>
+        )}
       </div>
     </div>
   )
