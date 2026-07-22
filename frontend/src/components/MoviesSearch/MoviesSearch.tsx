@@ -103,7 +103,7 @@ const MoviesSearch = () => {
               onClick={() => navigate(`/movie/${movie._key}`)}
             >
               <img src={movie.Poster_Url} alt={movie.Title}/>
-              <p id="movie-card-title">{movie.Title}</p>
+              <p id="movie-card-title-date"><b>{movie.Title}</b> ({movie.Release_Date?.split("-")[0]})</p>
               <p id="movie-card-genre">{movieGenres[0]}</p>
             </div>
           );

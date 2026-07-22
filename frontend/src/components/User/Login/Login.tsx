@@ -73,7 +73,9 @@ const Login = () => {
 
           {error && <p style={{color: 'red'}}>{error}</p>}
 
-          <button type="submit" id="btnLogin">Sign in</button>
+          <div className="btnLogin">
+            <button type="submit">Sign in</button>
+          </div>
 
           <p>Do not have an account? <a href="/register">Register.</a> </p>
         </form>

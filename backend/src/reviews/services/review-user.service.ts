@@ -1,28 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { AppService } from 'src/app.service';
-import { Review } from './review';
+import { Review } from '../review';
 import { MovieService } from 'src/movies/services/movie.service';
 import { MovieUserService } from 'src/movies/services/movie-user.service';
 import { aql } from 'arangojs';
 
 @Injectable()
-export class ReviewService {
+export class ReviewUserService {
     constructor(private readonly appService: AppService,
                 private movieService: MovieService,
                 private movieUserService: MovieUserService
             ) {}
-
-    async findReviews(movieKey?: string) {
-        const query = `
-            let movie = document(concat("movies/", @movieKey))
-            for v in outbound movie hasReview
-            return merge(v, {movie: movie.Title})
-        `;
-
-        const cursor = await this.appService.db.query(query, {movieKey});
-
-        return await cursor.all();
-    }
 
     async findReviewsByUser(username: string) {
         const query = `
@@ -32,7 +20,7 @@ export class ReviewService {
                 for v in inbound r hasReview 
                 return v
             )[0]
-            return merge(r, {movie: movie.Title})
+            return merge(r, {movie_key: movie._key}, {movie: movie.Title}, {date: movie.Release_Date}, {poster: movie.Poster_Url})
         `
 
         const cursor = await this.appService.db.query(query, {username});

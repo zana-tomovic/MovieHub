@@ -1,16 +1,31 @@
 .review-form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   gap: 4px;
-  margin: 0 40px;
+  margin: 0 45px;
+}
+
+.review-form img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  
+  margin-top: 20px;
+  padding-right: 10px;
+}
+
+.review-form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .rating {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
-  gap: 4px;
+  gap: 2.5px;
 }
 
 .rating input {
@@ -18,7 +33,7 @@
 }
 
 .rating label {
-  font-size: 22px;
+  font-size: 20px;
   transition: color 0.2s;
 }
 
@@ -38,13 +53,13 @@
 .comment-box {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  min-height: 120px;
+  width: 400px;
+  min-height: 100px;
   background: #000;
   border: 2px solid #353535;
   border-radius: 8px;
   box-sizing: border-box;
-  padding: 10px 15px;
+  padding: 12px 14px;
 }
 
 .comment {
@@ -65,7 +80,8 @@
   box-shadow: none;
 }
 
-.comment-box:focus-within {
+.comment-box:focus-within,
+.comment-box:not(:placeholder-shown) {
   background: #353535;
   outline: none;
 }
@@ -90,15 +106,19 @@ input[type="checkbox"] {
 }
 
 .review-form-buttons {
-  align-self: flex-end;
-  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
 }
 
 .review-form-buttons button {
-  display:inline-block;
-  margin-left: auto;
+  width: fit-content;
+  display: inline-block;
+  margin-left: 15px;
+  padding: 10px 25px;
   font-size: 15px;
   font-weight: 550;
   color: #fff;
-  background: #353535;
+  background: #252525;
 }

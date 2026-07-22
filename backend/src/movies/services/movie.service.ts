@@ -72,25 +72,26 @@ export class MovieService {
         return cursor.all();
     }
 
-    async updateRating(movieId: string) {
+    async updateRating(movieKey: string) {
         const query = `
-          for m in movies
-          filter m._key == "${movieId}"
-          let ratings = (
-            for v in outbound m._id hasReview
-            return v.rating 
-          )
+            for m in movies
+            filter m._key == "${movieKey}"
+            let ratings = (
+                for v in outbound m._id hasReview
+                return v.rating 
+            )
 
-          let voteCount = length(ratings)
-          let voteAv = voteCount > 0 ? round(average(ratings) * 100) / 100 : 0
-          update m with {
-            Vote_Average: voteAv,
-            Vote_Count: voteCount 
-          } in movies
-          return NEW
+            let voteCount = length(ratings)
+
+            let voteAv = voteCount > 0 ? round(average(ratings) * 100) / 100 : 0
+            update m with {
+                Vote_Average: voteAv,
+                Vote_Count: voteCount 
+            } in movies
+            return NEW
           `;
         
         const cursor = await this.appService.db.query(query);
-        return await cursor.all();
+        return await cursor.next();
     }
 }

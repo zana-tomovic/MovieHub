@@ -17,19 +17,21 @@ import { MovieModule } from './movies/movie.module';
 import { MovieController } from './movies/controllers/movie.controller';
 import { MovieService } from './movies/services/movie.service';
 
-import { ReviewService } from './reviews/review.service';
 import { ReviewModule } from './reviews/review.module';
-import { ReviewController } from './reviews/review.controller';
 import { MovieUserController } from './movies/controllers/movie-user.controller';
-import { MovieRecController } from './movies/controllers/movie-rec.controller';
 import { MovieUserService } from './movies/services/movie-user.service';
+import { MovieRecController } from './movies/controllers/movie-rec.controller';
 import { MovieRecService } from './movies/services/movie-rec.service';
+import { ReviewUserController } from './reviews/controllers/review-user.controller';
+import { ReviewUserService } from './reviews/services/review-user.service';
+import { ReviewController } from './reviews/controllers/review.controller';
+import { ReviewService } from './reviews/services/review.service';
 
 @Global()
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule, UserModule, MovieModule, ReviewModule],
-  controllers: [AppController, AuthController, UserController, MovieController, MovieUserController, MovieRecController, ReviewController],
-  providers: [AppService, AuthService, UserService, MovieService, MovieUserService, MovieRecService, ReviewService],
+  controllers: [AppController, AuthController, UserController, MovieController, MovieUserController, MovieRecController, ReviewController, ReviewUserController],
+  providers: [AppService, AuthService, UserService, MovieService, MovieUserService, MovieRecService, ReviewService, ReviewUserService],
   exports: [AppService]
 })
 export class AppModule {}

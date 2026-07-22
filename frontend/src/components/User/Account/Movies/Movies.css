@@ -1,6 +1,7 @@
 .library-page {
     display: flex;
     flex-direction: column;
+    padding: 0 5px;
 }
 
 .filters button {
@@ -26,5 +27,5 @@
     gap: 20px;
     width: 100%;
     max-width: 800px; 
-    padding: 20px;
+    padding: 20px 5px;
 }

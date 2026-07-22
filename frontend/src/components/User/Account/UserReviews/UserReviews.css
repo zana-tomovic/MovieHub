@@ -1,41 +1,47 @@
+.userReviews .reviews-list {
+  display: flex;
+  flex-direction: column;
+  width: 620px;
+  margin: 0;
+}
+
+.userReviews .review {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+  padding: 15px 22px 0;
+  gap: 15px;
+  background-color: rgb(34, 34, 34);
+  border: 2px solid rgb(34, 34, 34);
+}
+
 .movie-rating {
   display: flex;
   align-items: center;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
-  padding: 20px 10px 0 0;
+.movie-rating .rating {
+  display: flex;
+  flex-direction: row;
+  line-height: 1;
 }
 
 #movie {
-  font-size: 14px;
+  font-size: 16px;
   color: #fff;
+  padding: 0 5px;
+}
+
+.userReviews #comment {
+  padding: 0 10px;
 }
 
 #messageNoReviews {
   padding-left: 20px;
   font-size: 16px;
-}
-
-.userReviews button img {
-  width: 22px;
-  height: 22px;
-}
-
-.userReviews button,
-.userReviews button:focus {
-  background: none;
-  border: none;
-  box-shadow: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.review-item .review {
-  position: relative;
-  padding: 20px;
-  border: 2px solid #353535;
-  border-radius: 8px;
-  gap: 15px;
 }
 
 .review-buttons {
@@ -47,11 +53,145 @@
   gap: 0;
 }
 
+.review-buttons button img {
+  width: 20px;
+  height: 20px;
+}
+
+.review-buttons button,
+.review-buttons button:focus {
+  background: none;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.review-buttons #edit {
+  padding: 0 5px;
+}
+
 .review-item .review-form {
   padding: 0 0 40px;
   margin: 0;
 }
 
+.review-item .movie-card {
+  width: 122px;
+  height: 184px;
+  padding: 15px 0 25px;  
+}
+
+.review-item .movie-card:hover {
+  transform: none;
+}
+
+.review-item .movie-card::after {
+  display: none;
+}
+
 .review-item .comment-box {
   background: #353535;
+}
+
+.review-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 10px;
+  padding: 40px 0 10px 0;
+  justify-content: space-between;
+}
+
+.userReviews .heart_fill {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;  
+  padding: 0 15px;
+  margin-top: 50px;
+
+  cursor: pointer;
+}
+
+.heart_fill button {
+  padding: 0;
+  line-height: 1;
+}
+
+.likes {
+  width: 260px;
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+
+  background: #353535;
+  border-radius: 12px;
+  position: relative;
+
+  transform: scale(0.92);
+  transition: transform 0.2s ease;
+}
+
+.likes-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+
+  cursor: pointer;
+}
+
+.likes-user img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.likes-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, background 0.2s ease, backdrop-filter 0.2s ease;
+}
+
+.likes-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.likes-overlay.active .likes {
+  transform: scale(1);
+}
+
+.likes button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  color: #fff;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.likes button:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
 }

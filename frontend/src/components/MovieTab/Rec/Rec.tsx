@@ -57,7 +57,7 @@ const Rec = ({ recs, mess }: {recs: any, mess?: string}) => {
                 onClick={() => navigate(`/movie/${rec._key}`)}
               >
                 <img src={rec.Poster_Url} alt={rec.Title}/>
-                <p id="rec-card-title">{rec.Title}</p>
+                <p id="rec-card-title-date"><b>{rec.Title}</b> ({rec.Release_Date?.split("-")[0]})</p>
                 <p id="rec-card-genre">{recGenres[0]}</p>
               </div>
             );

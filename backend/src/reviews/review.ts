@@ -4,6 +4,8 @@ export class Review {
     rating: number;
     comment?: string;
     spoiler?: boolean;
+    createdAt: string;
+    Num_Likes?: number;
     username: string;
     movie?: string;
 }

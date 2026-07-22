@@ -9,5 +9,14 @@ body {
 .home-recs {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 25px;
+}
+
+.home-reviews {
+    padding: 0 85px 40px;
+    align-items: center;
+}
+
+#mess {
+    padding: 65px 80px 15px;
 }

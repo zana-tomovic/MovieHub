@@ -5,13 +5,14 @@
 }
 
 #register-left {
-    width: 42%;
+    width: 45%;
     display: flex;
     align-items: center;
+    padding: 0px 60px;
 }
 
 #register-right {
-    width: 58%;
+    width: 55%;
 }
 
 #register-right img {
@@ -43,10 +44,22 @@
     padding: 2px;
 }
 
-#btnRegister {
-    width: 42%;
-    margin-top: 20px;
+.btnRegister {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.btnRegister button {
+    width: 300px;
+    padding: 10px 0;
     color: #fff;
     background: rgba(185, 0, 0, 0.815);
 }
 
+.btnRegister button,
+.btnRegister button:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+}

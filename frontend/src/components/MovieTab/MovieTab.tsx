@@ -101,7 +101,7 @@ const MovieTab = () => {
         </div>
       </div>
       <div className="movie-reviews">
-        <Reviews movieKey={key} /> 
+        <Reviews movieKey={key} username={username}/> 
         <Form movieKey={key} username={username}/>
       </div>
 

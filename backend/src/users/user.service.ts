@@ -4,12 +4,12 @@ import { AppService } from "src/app.service";
 import { User } from "./user";
 import { aql } from "arangojs";
 import bcrypt from 'bcrypt';
-import { ReviewService } from "src/reviews/review.service";
+import { ReviewUserService } from "src/reviews/services/review-user.service";
 
 @Injectable()
 export class UserService {
     constructor(private readonly appService: AppService,
-                private reviewService: ReviewService
+                private reviewUserService: ReviewUserService
     ) {}
         
     async findAll() {
@@ -54,6 +54,10 @@ export class UserService {
             updatedUser.password = await bcrypt.hash(user.password, 10);            
         }
 
+        if (user.image) {
+            updatedUser.image = user.image;
+        }
+
         const cursor = await this.appService.db.query(aql 
             `for u in users
              filter u.username == ${user.username}
@@ -76,7 +80,7 @@ export class UserService {
 
         const res = await cursor.next();
 
-        await this.reviewService.delete(res);
+        await this.reviewUserService.delete(res);
 
         await this.appService.db.query(`for u in users filter u.username == @username remove u in users`, {username});
 

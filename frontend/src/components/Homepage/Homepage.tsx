@@ -4,17 +4,20 @@ import Nav from '../Nav/Nav'
 import SlideShow from './SlideShow';
 import Rec from '../MovieTab/Rec/Rec';
 import axios from 'axios';
+import Reviews from '../MovieTab/Reviews/Reviews';
 
 const Homepage = () => {
   const [ newMov, setNewMov ] = useState<any>([]);
   const [ recs, setRecs ] = useState<any>([]);
   const [ userRecs, setUserRecs ] = useState<any>([]);
+  const [ reviews, setReviews ] = useState<any>([]);
   const [ username, setUsername ] = useState('');
 
     useEffect(() => {
       getUser();
       getNewMovies();
       getPopularRecs();
+      getPopularReviews();
     }, []);
 
     useEffect(() => {
@@ -61,12 +64,22 @@ const Homepage = () => {
       .catch(err => console.error(err));
   };
 
+  const getPopularReviews = () => {
+    fetch(`http://localhost:3000/reviews/popular`)
+      .then(res => res.json())
+      .then(data => {
+        if (data) {
+            setReviews(data);
+        }
+      })
+      .catch(err => console.error(err));
+  }
+
   const getRecForUser = () => {
     fetch(`http://localhost:3000/movies/recs/user/${username}`)
       .then(res => res.json())
       .then(data => {
         if (data) {
-            console.log(data);
             setUserRecs(data);
         }
       })
@@ -78,9 +91,15 @@ const Homepage = () => {
       <Nav />
       <div className="home-items">
         <SlideShow newMov={newMov} /> 
+        
         <div className="home-recs">
           <Rec recs={recs} mess={"Popular: "}  /> 
-          {username && <Rec recs={userRecs} />}
+          {username && userRecs.length > 0 && <Rec recs={userRecs} />}
+        </div>
+
+        <p id="mess">Popular reviews this week: </p>
+        <div className="home-reviews">
+          <Reviews popular={reviews} username={username}/>
         </div>
       </div>
     </div>

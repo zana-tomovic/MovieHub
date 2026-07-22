@@ -1,12 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Homepage from './components/Homepage/Homepage'
+
 import MovieTab from './components/MovieTab/MovieTab'
 import MoviesSearch from './components/MoviesSearch/MoviesSearch'
 import Login from './components/User/Login/Login'
 import Register from './components/User/Register/Register'
+import Account from './components/User/Account/Account'
+
 import './App.css'
-import Homepage from './components/Homepage/Homepage'
-import UserNav from './components/User/Account/UserNav'
-import View from './components/UsersSearch/View'
 
 function App() {
 
@@ -19,8 +20,7 @@ function App() {
           <Route path="/movie/:key" element={<MovieTab />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/user/:username" element={<UserNav />} />
-          <Route path="/users/:username" element={<View />} />
+          <Route path="/:username" element={<Account />} />
         </Routes>
       </div>
     </BrowserRouter>

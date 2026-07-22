@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./Nav.css";
@@ -9,6 +9,8 @@ const Nav = () => {
   const [username, setUsername] = useState('');
   const [name, setName] = useState("");
   const [results, setResults] = useState<any[]>([]);
+
+  const [isFocused, setIsFocused] = useState(false);
 
   let navigate = useNavigate();
   
@@ -36,7 +38,8 @@ const Nav = () => {
     setResults(data);
   }
 
-  const handleSearchClick = () => {
+  const handleQueryChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
     fetchMovies(name);
   }
 
@@ -63,20 +66,43 @@ const Nav = () => {
 
       <div className="navBar-right">
         <div className="search-box">
-          <input
-            type="text"
-            placeholder="Search movies..."
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <img src={search} />
+          <div className="search-box-input">
+            <input
+              className={isFocused && name !== "" ? "open" : ""}
+              type="text"
+              placeholder="Search movies..."
+              value={name}
+              onChange={handleQueryChange}
+              onFocus={() => setIsFocused(true)}
+              onMouseEnter={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+            />
+            <img src={search} />
+          </div>
+          
+          {isFocused && name != "" && (
+            <div className="search-box-res">
+              {results.length > 0 ? (
+                results.map(res => (
+                  <div 
+                    key={res._key}
+                    onClick={() => navigate(`/movie/${res._key}`)}
+                  >
+                    <p>{res.Title} ({res.Release_Date?.split("-")[0]})</p>
+                  </div>
+                ))
+              ) : (
+                <p>No results.</p>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="user">
           {isLoggedIn ? (
             <div className="userLoggedIn">
               <a href="#" onClick={logout}>Sign out</a>
-              <a onClick={() => navigate(`/user/${username}`)}>Your account</a>
+              <a onClick={() => navigate(`/${username}`)}>Your account</a>
             </div>
           ) : (
             <div className="userNotLoggedIn">

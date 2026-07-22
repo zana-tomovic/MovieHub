@@ -2,7 +2,58 @@
   display: flex;
   flex-direction: column;
   width: 420px;
-  margin: 50px;
+  margin: 45px;
+}
+
+.popular-reviews-list {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin: 0;
+}
+
+.popular-reviews-list .review {
+  display: flex;
+  flex-direction: row;
+}
+
+.popular-reviews-list .review-content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.popular-reviews-list #movie {
+  padding: 5px 5px 15px;
+}
+
+.popular-reviews-list #spoiler {
+  margin: 0;
+  padding: 0 20px 20px;
+  font-style: italic;
+}
+
+.popular-reviews-list .user-rating {
+  padding: 0 10px;
+}
+
+.popular-reviews-list #comment {
+  margin: 0;
+  padding: 0 12px;
+}
+
+.popular-reviews-list .movie-card {
+  width: 120px;
+  height: 180px;
+  padding: 15px 5px;  
+}
+
+.popular-reviews-list .movie-card:hover {
+  transform: none;
+}
+
+.popular-reviews-list .movie-card::after {
+  display: none;
 }
 
 .review {
@@ -12,7 +63,20 @@
   margin-bottom: 20px;
   border: 2px solid #353535;
   border-radius: 8px;
-  padding: 15px 20px 20px;
+  padding: 15px 20px 0px;
+  font-size: 14px;
+}
+
+.review-user {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+img {
+  width: 55px;
+  height: 55px;
+  border: 50%;
 }
 
 .user-rating {
@@ -27,21 +91,68 @@
 }
 
 .rating span {
-  font-size: 22px;
+  font-size: 20px;
   color: rgb(224, 170, 34);
 }
 
 #username {
-  font-size: 14px;
-  color: #fff;
   white-space: nowrap;
   cursor: pointer;
 }
 
+#spoiler {
+  margin: 0;
+  padding: 0 68px 20px;
+  font-style: italic;
+}
+
 #comment {
-  font-size: 14px;
-  margin: 0 10px;
-  padding: 0px;
+  margin: 0;
+  padding: 0 68px;
+}
+
+.heart, .heart_fill {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;  
+   
+  padding-top: 20px;
+}
+
+.heart button,
+.heart_fill button {
+  padding: 0;
+  line-height: 1;
+}
+
+.heart button,
+.heart_fill button,
+.heart button:focus,
+.heart_fill button:focus {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.heart img, .heart_fill img {
+  height: 20px;
+  width: 20px;
+}
+
+.heart p, .heart_fill p {
+  font-size: 12px;
+  font-weight: 800;
+  padding-left: 5px;
+}
+
+.heart p {
+  color: #6e6e6e;
+}
+
+.heart_fill p {
+  color: #debc24;
 }
 
 .reviewBtn {

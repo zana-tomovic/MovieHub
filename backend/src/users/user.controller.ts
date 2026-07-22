@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
 import { AuthGuard } from "src/auth/auth.guard";
 import { UserService } from "src/users/user.service";
 import { User } from "./user";
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('users')
 export class UserController {
@@ -22,10 +23,18 @@ export class UserController {
     register(@Body() user: User) {
         return this.userService.register(user);
     }
-    
+
     @UseGuards(AuthGuard)
     @Patch()
-    update(@Body() user: Partial<User>) {
+    @UseInterceptors(FileInterceptor("image"))
+    update(
+        @UploadedFile() file: Express.Multer.File,
+        @Body() user: Partial<User>
+    ) {
+        if (file) {
+            user.image = `/uploads/${file.filename}`;
+        }
+
         return this.userService.update(user);
     }
 

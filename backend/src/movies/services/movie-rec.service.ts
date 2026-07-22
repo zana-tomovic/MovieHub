@@ -20,7 +20,7 @@ export class MovieRecService {
         let common = length(intersection(genres, split(m.Genre, ",")))
         filter common > 0
         sort common desc
-        limit 10 
+        limit 20 
         return distinct m
         `
 
@@ -37,7 +37,7 @@ export class MovieRecService {
             for v in inbound r hasReview
             filter starts_with(v.Release_Date, prev_year) or starts_with(v.Release_Date, current_year)
             sort r.rating desc
-            limit 10
+            limit 20
             return distinct v
         `
 
@@ -104,7 +104,7 @@ export class MovieRecService {
             filter common > 0
             filter m._key not in excludedKeys
             sort common desc
-            limit 10 
+            limit 20 
             return distinct m
         `
 
