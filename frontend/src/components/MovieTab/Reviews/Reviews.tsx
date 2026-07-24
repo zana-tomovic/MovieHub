@@ -15,7 +15,7 @@ const Reviews = ({ movieKey, popular, username }: { movieKey?: string | undefine
 
   const [ isLiked, setIsLiked ] = useState<string[]>([]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (popular) {
@@ -88,8 +88,18 @@ const Reviews = ({ movieKey, popular, username }: { movieKey?: string | undefine
         }
       }
     )
-    .then(() => {
+    .then((res) => {
       setIsLiked((prev) => [...prev, key]);
+
+      const updatedCount = res.data.Num_Likes;
+
+      setReviews((prev: any[]) =>
+        prev.map((r) => (r._key == key ? { ...r, Num_Likes: updatedCount } : r))
+      );
+
+      setVisible((prev: any[]) =>
+        prev.map((v) => (v._key == key ? { ...v, Num_Likes: updatedCount } : v))
+      );
     })
     .catch(console.error);
   }
@@ -108,8 +118,18 @@ const Reviews = ({ movieKey, popular, username }: { movieKey?: string | undefine
         }
       }
     )
-    .then(() => {
+    .then((res) => {
       setIsLiked((prev) => prev.filter((k) => k !== key));
+
+       const updatedCount = res.data.Num_Likes;
+
+      setReviews((prev: any[]) =>
+        prev.map((r) => (r._key == key ? { ...r, Num_Likes: updatedCount } : r))
+      );
+
+      setVisible((prev: any[]) =>
+        prev.map((v) => (v._key == key ? { ...v, Num_Likes: updatedCount } : v))
+      );
     })
     .catch(console.error);
   }

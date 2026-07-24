@@ -15,6 +15,7 @@
 .filters button:focus {
     box-shadow: none;
     border: none;
+    outline: none;
 }
 
 .filters button:hover {
@@ -23,9 +24,9 @@
 
 #library-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
     width: 100%;
-    max-width: 800px; 
+    max-width: 1200px; 
     padding: 20px 5px;
 }

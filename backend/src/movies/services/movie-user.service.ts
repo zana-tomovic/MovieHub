@@ -145,7 +145,16 @@ export class MovieUserService {
                 return m
             )
 
-            filter user != null && movie != null
+            let hasSeen = first(
+                for s in isSeen
+                filter s._from == user._id
+                filter s._to == movie._id
+                return s
+            )
+
+            filter user != null 
+            filter movie != null 
+            filter hasSeen == null
 
             insert {
                 _from: user._id,

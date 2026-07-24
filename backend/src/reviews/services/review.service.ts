@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { AppService } from 'src/app.service';
+import { NotificationService } from 'src/notifications/notification.service';
+import { Subject } from 'src/notifications/notification';
 
 @Injectable()
 export class ReviewService {
-    constructor(private readonly appService: AppService
+    constructor(
+                private readonly appService: AppService,
+                private readonly notificationService: NotificationService
             ) {}
 
     async findReviews(movieKey?: string) {
@@ -77,6 +81,19 @@ export class ReviewService {
     }
 
     async likeReview(key: string, username: string) {
+        const cursor1 = await this.appService.db.query(
+            `
+                for r in reviews
+                filter r._key == @key
+                  for user in users
+                  filter user.username == r.username
+                  return user._key
+            `,
+            {key}
+        );
+
+        const review_user_key = await cursor1.next();
+
         const query = `
             let user = first(
                 for u in users
@@ -96,13 +113,16 @@ export class ReviewService {
                 _from: user._id,
                 _to: review._id
             } into hasLiked
+            RETURN NEW
         `;
 
-        const cursor = await this.appService.db.query(query, {key, username});
+        const cursor2 = await this.appService.db.query(query, {key, username});
         
-        await this.updateLikes(key);
-        
-        return await cursor.next();
+        await cursor2.next();
+    
+        await this.notificationService.createNotification(username, review_user_key, Subject.Liked);
+
+        return await this.updateLikes(key);
     }
 
     async removeLiked(key: string, username: string) {
@@ -126,14 +146,13 @@ export class ReviewService {
                 return liked
             )
 
-            remove liked in hasLiked;    
-        `;
+            remove liked in hasLiked    
+        `
 
-        const cursor =await this.appService.db.query(query, {key, username});
+        const cursor = await this.appService.db.query(query, {key, username});
+        await cursor.next();
 
-        await this.updateLikes(key);
-
-        return await cursor.next();
+        return await this.updateLikes(key);
     }
 
     async updateLikes(reviewKey : string) {

@@ -37,6 +37,7 @@
 .userLoggedIn,
 .userNotLoggedIn {
     display: flex;
+    align-items: center;
     gap: 20px;
 }  
 
@@ -72,28 +73,32 @@
     transition: all 0.4s ease;
 }
 
-.search-box-input input:focus {
+.search-box-input input.open {
     width: 240px;
     border-radius: 20px;
     outline: none;
 }
 
-.search-box-input input.open {
+.search-box-input input.open_name {
     width: 240px;
     border-radius: 20px 20px 0 0;
+    outline: none;
+}
+
+.search-box-input input:focus {
     outline: none;
 }
 
 .search-box-input img {
     position: absolute;
     top: 50%;
-    left: 12px;
+    left: 10.8px;
     transform: translateY(-50%);
 
     width: 18px;
     height: 18px;
 
-    pointer-events: none;
+    cursor: pointer;
 }
 
 .search-box-res {
@@ -126,11 +131,6 @@
     color: #000;
 
     white-space: normal;
-}
-
-.userLoggedIn a img {
-    width: 45px;
-    height: px;
 }
 
 

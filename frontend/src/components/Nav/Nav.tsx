@@ -1,8 +1,9 @@
-import { useEffect, useState, type ChangeEvent } from 'react'
+import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./Nav.css";
 import search from "../../assets/images/search.png"
+import Notifications from './Notifications/Notifications';
 
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,6 +12,8 @@ const Nav = () => {
   const [results, setResults] = useState<any[]>([]);
 
   const [isFocused, setIsFocused] = useState(false);
+
+  const ref = useRef<HTMLInputElement>(null);
 
   let navigate = useNavigate();
   
@@ -32,6 +35,21 @@ const Nav = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setIsFocused(false);
+        setName("");
+        setResults([]);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [])
+
   const fetchMovies = async (title: string) => {
     const res = await fetch(`http://localhost:3000/movies/search/?title=${title}`)
     const data = await res.json();
@@ -47,7 +65,7 @@ const Nav = () => {
     localStorage.removeItem('token'); 
     setIsLoggedIn(false);
 
-    navigate('/');
+    navigate('/login');
   };
 
   return (
@@ -65,19 +83,30 @@ const Nav = () => {
       </div>
 
       <div className="navBar-right">
-        <div className="search-box">
+        <div 
+          className="search-box" 
+          ref={ref}
+        >
           <div className="search-box-input">
             <input
-              className={isFocused && name !== "" ? "open" : ""}
+              className={name ? "open_name" : isFocused ? "open" : ""}
               type="text"
               placeholder="Search movies..."
               value={name}
               onChange={handleQueryChange}
-              onFocus={() => setIsFocused(true)}
-              onMouseEnter={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
             />
-            <img src={search} />
+            <img 
+              src={search} 
+              onClick={() => {
+                if (isFocused) {
+                  setIsFocused(false);
+                  setName("");
+                  setResults([]);
+                } else {
+                  setIsFocused(true);
+                }
+              }}
+            />
           </div>
           
           {isFocused && name != "" && (
@@ -101,7 +130,10 @@ const Nav = () => {
         <div className="user">
           {isLoggedIn ? (
             <div className="userLoggedIn">
-              <a href="#" onClick={logout}>Sign out</a>
+              <div className="user-notifications">
+                <Notifications username={username} />
+              </div>
+              <a onClick={logout}>Sign out</a>
               <a onClick={() => navigate(`/${username}`)}>Your account</a>
             </div>
           ) : (

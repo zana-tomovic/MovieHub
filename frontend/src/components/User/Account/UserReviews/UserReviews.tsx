@@ -43,14 +43,14 @@ const UserReviews = ({ username }: { username?: string }) => {
     .catch(err => console.error(err));
   }
 
-  const deleteReview = (reviewId: string) => {
+  const deleteReview = (key: string) => {
     const token = localStorage.getItem('token');
     
-    axios.delete(`http://localhost:3000/reviews/${reviewId}`, {
+    axios.delete(`http://localhost:3000/reviews/${key}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(() => {
-      setReviews(prev => prev.filter(r => r._key !== reviewId));
+      setReviews(prev => prev.filter(r => r._key !== key));
     })
     .catch(err => console.error(err));
   }
@@ -123,11 +123,12 @@ const UserReviews = ({ username }: { username?: string }) => {
           className="likes" 
           onClick={(e) => e.stopPropagation()}
         >
-          <button onClick={() => setLikesView(false)} >x</button>
+          <button onClick={() => setLikesView(false)} >×</button>
           {likes.map((like) => (
             <div 
               className="likes-user" 
-              key={like._id}
+              key={like._key}
+              onClick={() => navigate(`/${like.username}`)}
             >
               <img src={like?.image ? like.image : user_pic}/>
               <p>{like.username}</p>

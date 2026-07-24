@@ -182,9 +182,10 @@
 .likes button {
   position: absolute;
   top: 2px;
-  right: 2px;
+  right: 0.5px;
   color: #fff;
   font-size: 20px;
+  font-weight: 400;
   background: none;
   border: none;
   cursor: pointer;

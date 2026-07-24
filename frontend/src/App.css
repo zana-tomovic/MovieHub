@@ -1,3 +1,9 @@
+@keyframes click-button {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.8); }
+    100% { transform: scale(1); }
+}
+
 @font-face {
   font-family: 'TasaOrbiter';
   src: url('assets/fonts/TasaOrbiter/TASAOrbiter-VariableFont_wght.ttf') format('truetype-variations');
@@ -16,4 +22,8 @@
 .app-components, input {
   font-family: 'TasaOrbiter', sans-serif;
   color: rgb(255, 255, 255);
+}
+
+button:focus {
+  animation: click-button 0.25s ease-out;
 }

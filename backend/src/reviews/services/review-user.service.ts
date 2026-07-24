@@ -7,7 +7,8 @@ import { aql } from 'arangojs';
 
 @Injectable()
 export class ReviewUserService {
-    constructor(private readonly appService: AppService,
+    constructor(
+                private readonly appService: AppService,
                 private movieService: MovieService,
                 private movieUserService: MovieUserService
             ) {}
@@ -47,10 +48,11 @@ export class ReviewUserService {
 
         if (newReview) {
             await this.appService.db.query(
-                `insert {
-                  _from: "movies/${movieKey}",
-                  _to: "${newReview._id}"
-                } into hasReview`
+                `  insert {
+                    _from: "movies/${movieKey}",
+                    _to: "${newReview._id}"
+                    } into hasReview
+                `
             );
         }
 
@@ -88,7 +90,7 @@ export class ReviewUserService {
     async delete(key: string) {
         const cursor = await this.appService.db.query(`
             for r in reviews 
-            filter r._key == ${key} 
+            filter r._key == "${key}" 
             for v in inbound r hasReview
             return v._key
         `);
@@ -96,9 +98,15 @@ export class ReviewUserService {
         const movieKey = await cursor.next();
 
         await this.appService.db.query(`
-            for e in hasReview 
-            filter e._to == "reviews/${key}"  
-            remove e in hasReview
+            for h in hasReview 
+            filter h._to == "reviews/${key}"  
+            remove h in hasReview
+        `);
+
+        await this.appService.db.query(`
+            for liked in hasLiked
+            filter liked._to == "reviews/${key}"  
+            remove liked in hasLiked
         `);
 
         await this.appService.db.query(`
@@ -106,6 +114,8 @@ export class ReviewUserService {
             filter r._key == "${key}"
             remove r in reviews
         `);
+
+        console.log("movieKey:", movieKey);
 
         await this.movieService.updateRating(movieKey);
 

@@ -83,9 +83,9 @@ export class MovieService {
 
             let voteCount = length(ratings)
 
-            let voteAv = voteCount > 0 ? round(average(ratings) * 100) / 100 : 0
+            let voteAverage = voteCount > 0 ? round(average(ratings) * 100) / 100 : 0
             update m with {
-                Vote_Average: voteAv,
+                Vote_Average: voteAverage,
                 Vote_Count: voteCount 
             } in movies
             return NEW

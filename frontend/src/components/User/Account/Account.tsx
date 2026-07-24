@@ -9,14 +9,14 @@ import add_pic from '../../../assets/images/add-image.png';
 import visibilityIcon from '../../../assets/images/visibility.png';
 import visibilityOffIcon from '../../../assets/images/visibility-off.png';
 
-import Nav from '../../Nav/Nav'
 import UserReviews from './UserReviews/UserReviews';
 import Movies from './Movies/Movies';
+import Nav from '../../Nav/Nav';
 
 const Account = () => {
   const { username } = useParams();
   const [ user, setUser ] = useState<any>();
-  const [ mode, setMode ] = useState("reviews");st
+  const [ mode, setMode ] = useState("reviews");
   const [ edit, setEdit ] = useState(false);
 
   const [ email, setEmail ] = useState('');

@@ -27,11 +27,14 @@ import { ReviewUserService } from './reviews/services/review-user.service';
 import { ReviewController } from './reviews/controllers/review.controller';
 import { ReviewService } from './reviews/services/review.service';
 
+import { NotificationController } from './notifications/notification.controller';
+import { NotificationService } from './notifications/notification.service';
+
 @Global()
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), AuthModule, UserModule, MovieModule, ReviewModule],
-  controllers: [AppController, AuthController, UserController, MovieController, MovieUserController, MovieRecController, ReviewController, ReviewUserController],
-  providers: [AppService, AuthService, UserService, MovieService, MovieUserService, MovieRecService, ReviewService, ReviewUserService],
+  controllers: [AppController, AuthController, UserController, MovieController, MovieUserController, MovieRecController, ReviewController, ReviewUserController, NotificationController],
+  providers: [AppService, AuthService, UserService, MovieService, MovieUserService, MovieRecService, ReviewService, ReviewUserService, NotificationService],
   exports: [AppService]
 })
 export class AppModule {}
