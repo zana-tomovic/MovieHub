@@ -51,7 +51,8 @@
 }
 
 .btnRegister button {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     padding: 10px 0;
     color: #fff;
     background: rgba(185, 0, 0, 0.815);

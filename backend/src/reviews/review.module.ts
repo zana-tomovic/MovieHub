@@ -6,7 +6,7 @@ import { AppService } from 'src/app.service';
 import { MovieService } from 'src/movies/services/movie.service';
 import { MovieUserService } from 'src/movies/services/movie-user.service';
 
-import { UserService } from 'src/users/user.service';
+import { UserService } from 'src/users/services/user.service';
 import { ReviewUserController } from './controllers/review-user.controller';
 import { ReviewUserService } from './services/review-user.service';
 import { NotificationService } from 'src/notifications/notification.service';

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "./Login.css";
-import image from '../../../assets/images/image1.jpg'
-import visibilityIcon from '../../../assets/images/visibility.png';
-import visibilityOffIcon from '../../../assets/images/visibility-off.png';
+import image from '../../assets/images/image1.jpg'
+import visibilityIcon from '../../assets/images/visibility.png';
+import visibilityOffIcon from '../../assets/images/visibility-off.png';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -30,7 +30,7 @@ const Login = () => {
       localStorage.setItem('token', res.data.accessToken);
       navigate("/");
     })
-    .catch((error) => {
+    .catch(() => {
       setError("Incorrect password or username.");
     })
 

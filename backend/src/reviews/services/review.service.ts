@@ -14,7 +14,12 @@ export class ReviewService {
         const query = `
             let movie = document(concat("movies/", @movieKey))
             for v in outbound movie hasReview
-            return merge(v, {movie: movie.Title})
+            let user = first(
+                for user in users
+                filter user.username == v.username
+                return user
+            )
+            return merge(v, {movie: movie.Title}, {image: user.image})
         `;
 
         const cursor = await this.appService.db.query(query, {movieKey});
@@ -81,7 +86,7 @@ export class ReviewService {
     }
 
     async likeReview(key: string, username: string) {
-        const cursor1 = await this.appService.db.query(
+        const review_user_cursor = await this.appService.db.query(
             `
                 for r in reviews
                 filter r._key == @key
@@ -92,7 +97,7 @@ export class ReviewService {
             {key}
         );
 
-        const review_user_key = await cursor1.next();
+        const review_user_key = await review_user_cursor.next();
 
         const query = `
             let user = first(
@@ -116,9 +121,9 @@ export class ReviewService {
             RETURN NEW
         `;
 
-        const cursor2 = await this.appService.db.query(query, {key, username});
+        const cursor = await this.appService.db.query(query, {key, username});
         
-        await cursor2.next();
+        await cursor.next();
     
         await this.notificationService.createNotification(username, review_user_key, Subject.Liked);
 

@@ -46,23 +46,6 @@
     z-index: 10; 
 }
 
-/* #slide-button-prev {
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-#slide-button-next {
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-#slide-button-prev img, #slide-button-next img{
-    width: 20px;
-    height: 20px;
-} */
-
 .details {
     top: 55%;
     left: 80px;

@@ -97,7 +97,7 @@ const Homepage = () => {
           {username && userRecs.length > 0 && <Rec recs={userRecs} />}
         </div>
 
-        <p id="mess">Popular reviews this week: </p>
+        <p id="mess">{reviews.length > 0 ? "Popular reviews this week: " : ""}  </p>
         <div className="home-reviews">
           <Reviews popular={reviews} username={username}/>
         </div>

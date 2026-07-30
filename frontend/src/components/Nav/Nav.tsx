@@ -18,6 +18,21 @@ const Nav = () => {
   let navigate = useNavigate();
   
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setIsFocused(false);
+        setName("");
+        setResults([]);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [])
+
+  useEffect(() => {
     const token = localStorage.getItem('token');
     
     axios.get(`http://localhost:3000/auth/loggedUser`, {
@@ -34,21 +49,6 @@ const Nav = () => {
       setIsLoggedIn(false);
     });
   }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setIsFocused(false);
-        setName("");
-        setResults([]);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [])
 
   const fetchMovies = async (title: string) => {
     const res = await fetch(`http://localhost:3000/movies/search/?title=${title}`)
@@ -78,7 +78,6 @@ const Nav = () => {
         <div className="pages">
           <a href="/">Home</a>
           <a href="/search">Search movies</a>
-          <a>Add users</a>
         </div>
       </div>
 
@@ -134,7 +133,7 @@ const Nav = () => {
                 <Notifications username={username} />
               </div>
               <a onClick={logout}>Sign out</a>
-              <a onClick={() => navigate(`/${username}`)}>Your account</a>
+              <a onClick={() => navigate(`/user/${username}`)}>Your account</a>
             </div>
           ) : (
             <div className="userNotLoggedIn">

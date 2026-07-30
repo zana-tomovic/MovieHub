@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { UserService } from "src/users/user.service";
+import { UserService } from "src/users/services/user.service";
 import bcrypt from 'bcrypt';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class AuthService {
             throw new UnauthorizedException("Nevalidan unos.")
         }
         
-        const payload = { sub: user.id, username: user.username };
+        const payload = { _id: user._id, username: user.username };
 
         return {
             accessToken: await this.jwtService.signAsync(payload),

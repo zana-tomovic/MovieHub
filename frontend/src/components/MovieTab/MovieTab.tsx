@@ -15,18 +15,21 @@ const MovieTab = () => {
   const [ recs, setRecs ] = useState<any>([]);
 
   useEffect(() => {
-      getUser();
-      getRecs();
       getMovie();
+      getRecs();
   }, [ key ]);
+
+  useEffect(() => {
+      getUser();
+  }, [])
 
   const getMovie = () => {
       fetch(`http://localhost:3000/movies/${key}`)
-          .then(res => res.json())
-          .then(data => {
-              if (data) setMovie(data);
-          })
-          .catch(err => console.error(err));
+        .then(res => res.json())
+        .then(data => {
+            if (data) setMovie(data);
+        })
+        .catch(err => console.error(err));
   }
 
   const getUser = () => {
@@ -105,7 +108,9 @@ const MovieTab = () => {
         <Form movieKey={key} username={username}/>
       </div>
 
-      <Rec recs={recs}/>          
+      <div className="movie-tab-rec">
+        <Rec recs={recs}/>   
+      </div>       
     </div>
   )
 }

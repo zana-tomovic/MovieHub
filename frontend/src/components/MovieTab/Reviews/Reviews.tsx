@@ -39,7 +39,7 @@ const Reviews = ({ movieKey, popular, username }: { movieKey?: string | undefine
         if (data) {
           setReviews(data);
           setVisible(data.slice(0, batch_size));
-          console.log(data);
+          console.log(data.image);
         }
       })
       .catch((err) => {console.error(err)});
@@ -153,7 +153,7 @@ const Reviews = ({ movieKey, popular, username }: { movieKey?: string | undefine
 
                     <div className="review-user">
                       <div className="user-rating">
-                        <span id="username" onClick={() => navigate(`/${r.username}`) }>Review from <b>{r.username}</b></span>
+                        <span id="username" onClick={() => navigate(`/user/${r.username}`) }>Review from <b>{r.username}</b></span>
                         <span className="rating">
                           {[1, 2, 3, 4, 5].map((star) => (
                             <span key={star}>
@@ -203,10 +203,10 @@ const Reviews = ({ movieKey, popular, username }: { movieKey?: string | undefine
                 <div className="review">
 
                 <div className="review-user">
-                    <img src={user_pic} />
+                    <img src={v.image ? `http://localhost:3000${v.image}` : user_pic}/>
 
                     <div className="user-rating">
-                      <span id="username" onClick={() => navigate(`/${v.username}`) }>Review from <b>{v.username}</b></span>
+                      <span id="username" onClick={() => navigate(`/user/${v.username}`) }>Review from <b>{v.username}</b></span>
                       <span className="rating">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <span key={star}>

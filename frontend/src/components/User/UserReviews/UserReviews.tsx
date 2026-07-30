@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import "./UserReviews.css";
-import Form from '../../../MovieTab/Reviews/Form/Form';
+import Form from '../../MovieTab/Reviews/Form/Form';
 
-import user_pic from '../../../../assets/images/user.png';
-import editIcon from "../../../../assets/images/edit.png";
-import deleteIcon from "../../../../assets/images/delete.png";
-import heart_fill from '../../../../assets/images/heart fill.png';
+import editIcon from "../../../assets/images/edit.png";
+import deleteIcon from "../../../assets/images/delete.png";
+import heart from '../../../assets/images/heart.png';
 
 import { useNavigate } from 'react-router-dom';
+import Likes from './Likes/Likes';
 
-const UserReviews = ({ username }: { username?: string }) => {
+const UserReviews = ({ username, isLoggedIn }: { username?: string; isLoggedIn?: boolean }) => {
   const [reviews, setReviews] = useState<any[]>([]);
-  const [likes, setLikes] = useState<any[]>([]);
-  const [likesView, setLikesView] = useState(false);
   const [editingReview, setEditingReview] = useState<any>(null);
+  const [openLikesFor, setOpenLikesFor] = useState<string | null>(null);
 
   const navigate = useNavigate()
 
@@ -26,22 +25,6 @@ const UserReviews = ({ username }: { username?: string }) => {
         })   
         .catch(err => console.error(err));
   }, [username]);
-
-  const getLikesByUsers = (key: string) => {
-    console.log(key);
-    const token = localStorage.getItem('token');
-  
-    axios.get(`http://localhost:3000/reviews/liked/${key}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then((res) => {
-      if (res.data) {
-        setLikes(res.data);
-        setLikesView(true);
-      }
-    })
-    .catch(err => console.error(err));
-  }
 
   const deleteReview = (key: string) => {
     const token = localStorage.getItem('token');
@@ -55,7 +38,7 @@ const UserReviews = ({ username }: { username?: string }) => {
     .catch(err => console.error(err));
   }
 
-  if (!reviews || reviews.length === 0) return <p id="messageNoReviews">You have no reviews.</p>;
+  if (!reviews || reviews.length === 0) return <p id="messageNoReviews">{isLoggedIn ? "You have no reviews." : "No reviews."}</p>;
 
   return (
     <div className="userReviews">
@@ -66,14 +49,16 @@ const UserReviews = ({ username }: { username?: string }) => {
               <Form 
                 username={username} 
                 review={editingReview}
-                onCancel={() => setEditingReview(null)}
+                onClose={() => setEditingReview(null)}
               />
             ) : (
-              <div className={`review ${!likesView ? 'active' : ''}`}>
-                <div className="review-buttons">
-                  <button id="edit" onClick={() => setEditingReview(r)}><img src={editIcon} /></button>
-                  <button id="delete" onClick={() => deleteReview(r._key)}><img src={deleteIcon} /></button>
-                </div>
+              <div className={"review"}>
+                {isLoggedIn && (
+                  <div className="review-buttons">
+                    <button id="edit" onClick={() => setEditingReview(r)}><img src={editIcon} /></button>
+                    <button id="delete" onClick={() => deleteReview(r._key)}><img src={deleteIcon} /></button>
+                  </div>
+                )}
                 
                 <div 
                   className="movie-card"
@@ -84,7 +69,7 @@ const UserReviews = ({ username }: { username?: string }) => {
                 
                 <div className="review-content">
                   <div className="movie-rating">
-                    <span id="movie"><b>{r.movie}</b> ({r.date?.split("-")[0]})</span>
+                    <span id="movie" onClick={() => navigate(`/movie/${r.movie_key}`)}><b>{r.movie}</b> ({r.date?.split("-")[0]})</span>
                     <span className="rating">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <span key={star}>
@@ -96,15 +81,15 @@ const UserReviews = ({ username }: { username?: string }) => {
                   <p id="comment">{r.comment ? r.comment : ''}</p>
 
                   <div 
-                    className={`heart_fill ${!r.Num_Likes ? 'disabled' : ''}`}
+                    className={`heart ${!r.Num_Likes ? 'disabled' : ''}`}
                     onClick={() => {
                       if (r.Num_Likes) {
-                        getLikesByUsers(r._key);
+                        setOpenLikesFor(r._key);
                       }
                     }}
                   >
                     <button disabled={!r.Num_Likes}>
-                      <img src={heart_fill} />
+                      <img src={heart} />
                     </button>
                     <p>{r.Num_Likes} {r.Num_Likes > 1 ? "likes" : "like"}</p>
                   </div>
@@ -115,27 +100,14 @@ const UserReviews = ({ username }: { username?: string }) => {
         ))}
       </div>
 
-      <div 
-        className={`likes-overlay ${likesView ? 'active' : ''}`}
-        onClick={() => setLikesView(false)}
-      >
+      {openLikesFor && (
         <div 
-          className="likes" 
-          onClick={(e) => e.stopPropagation()}
+          className="likes-overlay active"
+          onClick={() => setOpenLikesFor(null)}
         >
-          <button onClick={() => setLikesView(false)} >×</button>
-          {likes.map((like) => (
-            <div 
-              className="likes-user" 
-              key={like._key}
-              onClick={() => navigate(`/${like.username}`)}
-            >
-              <img src={like?.image ? like.image : user_pic}/>
-              <p>{like.username}</p>
-            </div>
-          ))}
+          <Likes reviewKey={openLikesFor} onClose={() => setOpenLikesFor(null)}/>
         </div>
-      </div>
+      )}
     </div>
   )
 }

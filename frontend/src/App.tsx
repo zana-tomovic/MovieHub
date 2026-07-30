@@ -3,9 +3,9 @@ import Homepage from './components/Homepage/Homepage'
 
 import MovieTab from './components/MovieTab/MovieTab'
 import MoviesSearch from './components/MoviesSearch/MoviesSearch'
-import Login from './components/User/Login/Login'
-import Register from './components/User/Register/Register'
-import Account from './components/User/Account/Account'
+import Login from './components/Login/Login'
+import Register from './components/Register/Register'
+import User from './components/User/User'
 
 import './App.css'
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/movie/:key" element={<MovieTab />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/:username" element={<Account />} />
+          <Route path="/user/:username" element={<User />} />
         </Routes>
       </div>
     </BrowserRouter>

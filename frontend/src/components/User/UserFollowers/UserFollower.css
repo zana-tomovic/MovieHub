@@ -1,0 +1,105 @@
+.followers {
+  width: 400px;
+  max-height: 400px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+
+  background: #353535;
+  border-radius: 12px;
+  position: relative;
+
+  transform: scale(0.92);
+  transition: transform 0.2s ease;
+}
+
+.follower {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.follower-details {
+  display: flex;
+  align-items: center;
+}
+
+.follower-details img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.followers-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, background 0.2s ease, backdrop-filter 0.2s ease;
+}
+
+.followers-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.followers-overlay.active .followers {
+  transform: scale(1);
+}
+
+#exit {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#exit:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.follower-buttons {
+  display: flex;
+  gap: 10px;
+  
+  margin-left: auto;
+  padding: 5px 20px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.follower-buttons button,
+.follower-buttons button:focus {
+    background-color: #555;
+    border: 2px solid #555;
+    color: #fff;
+    outline: none;
+}
+
+.same-user-id {
+  visibility: hidden;
+  pointer-events: none;
+}

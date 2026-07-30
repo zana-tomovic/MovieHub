@@ -21,6 +21,7 @@ export class ReviewUserService {
                 for v in inbound r hasReview 
                 return v
             )[0]
+
             return merge(r, {movie_key: movie._key}, {movie: movie.Title}, {date: movie.Release_Date}, {poster: movie.Poster_Url})
         `
 

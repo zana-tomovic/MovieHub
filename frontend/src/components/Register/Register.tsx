@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "./Register.css";
-import image from '../../../assets/images/image2.jpg'
-import visibilityIcon from '../../../assets/images/visibility.png';
-import visibilityOffIcon from '../../../assets/images/visibility-off.png';
+import image from '../../assets/images/image2.jpg'
+import visibilityIcon from '../../assets/images/visibility.png';
+import visibilityOffIcon from '../../assets/images/visibility-off.png';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -28,7 +28,7 @@ const Register = () => {
       email,
       password
     })
-    .then((res) => {
+    .then(() => {
       navigate("/login");
     })
     .catch((error) => {

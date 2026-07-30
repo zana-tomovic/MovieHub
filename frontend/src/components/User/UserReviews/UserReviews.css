@@ -1,0 +1,129 @@
+.userReviews .reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 620px;
+  margin: 0;
+}
+
+.userReviews .review {
+  position: relative;
+  padding: 15px 22px 0;
+  border: 2px solid rgb(34, 34, 34);
+  background-color: rgb(34, 34, 34);
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.movie-rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.movie-rating .rating {
+  display: flex;
+  flex-direction: row;
+  line-height: 1;
+}
+
+#movie {
+  font-size: 16px;
+  color: #fff;
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.userReviews #comment {
+  padding: 0 10px;
+}
+
+#messageNoReviews {
+  padding-left: 20px;
+  font-size: 16px;
+}
+
+.review-buttons {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+
+  display: flex;
+  gap: 0;
+}
+
+.review-buttons button img {
+  width: 20px;
+  height: 20px;
+}
+
+.review-buttons button,
+.review-buttons button:focus {
+  background: none;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.review-buttons #edit {
+  padding: 0 5px;
+}
+
+.review-item .movie-card {
+  width: 122px;
+  height: 184px;
+  
+  box-sizing: content-box;
+  padding: 15px 0 25px;  
+}
+
+.review-item .movie-card:hover {
+  transform: none;
+}
+
+.review-item .movie-card::after {
+  display: none;
+}
+
+.review-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 10px;
+  padding: 40px 0 10px 0;
+  justify-content: space-between;
+}
+
+.userReviews .heart {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;  
+  padding: 0 15px;
+  margin-top: 50px;
+  
+  cursor: pointer;
+}
+
+.userReviews .heart p {
+  color: #808080;
+}
+
+.heart button {
+  padding: 0;
+  line-height: 1;
+}
+
+.review-item .review-edit-form {
+  margin: 0 0 20px;
+}
+
+
+
+

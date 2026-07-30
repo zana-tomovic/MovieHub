@@ -1,8 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
 import { AuthGuard } from "src/auth/auth.guard";
-import { UserService } from "src/users/user.service";
-import { User } from "./user";
-import { FileInterceptor } from '@nestjs/platform-express';
+import { UserService } from "src/users/services/user.service";
+import { User } from "../user";
+
+import { FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from 'multer';
+import { extname } from 'path';
 
 @Controller('users')
 export class UserController {
@@ -26,11 +29,24 @@ export class UserController {
 
     @UseGuards(AuthGuard)
     @Patch()
-    @UseInterceptors(FileInterceptor("image"))
+    @UseInterceptors(
+    FileInterceptor('image', {
+        storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+            const filename =
+            Date.now() + extname(file.originalname);
+
+            cb(null, filename);
+        },
+        }),
+    }),
+    )
     update(
-        @UploadedFile() file: Express.Multer.File,
+      @UploadedFile() file: Express.Multer.File,
         @Body() user: Partial<User>
     ) {
+        console.log(file);
         if (file) {
             user.image = `/uploads/${file.filename}`;
         }
@@ -43,4 +59,5 @@ export class UserController {
     delete(@Param('username') username: string) {
         return this.userService.delete(username);
     }
+
 }

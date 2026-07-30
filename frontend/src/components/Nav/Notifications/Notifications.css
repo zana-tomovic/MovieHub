@@ -43,6 +43,8 @@
     top: 40px;
     left: 0;
     width: 240px;
+    display: flex;
+    flex-direction: column-reverse;
     gap: 5px;
 
     background: #fff;

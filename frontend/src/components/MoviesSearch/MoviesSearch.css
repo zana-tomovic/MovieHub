@@ -70,6 +70,8 @@ option {
     gap: 15px 5px;
     width: 100%;
     max-width: 1200px; 
+    
+    box-sizing: content-box;
     padding: 40px 60px;
 }
 

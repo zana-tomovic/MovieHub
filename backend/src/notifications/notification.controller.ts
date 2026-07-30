@@ -10,7 +10,7 @@ export class NotificationController {
         return this.notificationService.getNotifications(username);
     }
 
-    @Post('/:key')
+    @Post(':key')
     async setSeen(@Param('key') key: string) {
         return this.notificationService.setSeen(key);
     }

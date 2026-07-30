@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 
 import { AppService } from "src/app.service";
-import { User } from "./user";
+import { User } from "../user";
 import { aql } from "arangojs";
 import bcrypt from 'bcrypt';
 import { ReviewUserService } from "src/reviews/services/review-user.service";
@@ -13,7 +13,7 @@ export class UserService {
     ) {}
         
     async findAll() {
-        const cursor = await this.appService.db.query(aql `for u in users return u`);
+        const cursor = await this.appService.db.query(aql `for u in users return unset(u, "password")`);
         return await cursor.all();
     }
 

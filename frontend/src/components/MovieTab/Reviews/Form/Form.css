@@ -10,9 +10,10 @@
   width: 55px;
   height: 55px;
   border-radius: 50%;
+  flex-shrink: 0;
   
   margin-top: 20px;
-  padding-right: 10px;
+  margin-right: 10px;
 }
 
 .review-form-input {
@@ -54,7 +55,7 @@
   display: flex;
   flex-direction: column;
   width: 400px;
-  min-height: 100px;
+  min-height: 132px;
   background: #000;
   border: 2px solid #353535;
   border-radius: 8px;
@@ -82,7 +83,7 @@
 
 .comment-box:focus-within,
 .comment-box:not(:placeholder-shown) {
-  background: #353535;
+  background-color: #353535;
   outline: none;
 }
 
@@ -128,4 +129,80 @@ input[type="checkbox"] {
   border: none;
   outline: none;
   box-shadow: none;
+}
+
+.review-edit-form {
+  position: relative;
+  padding: 15px 22px 0;
+  
+  width: 100%;
+  max-width: 620px;
+  border: 2px solid rgb(34, 34, 34);
+  border-radius: 8px;
+  background-color: rgb(34, 34, 34);
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.review-edit-form .review-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+
+  padding: 40px 0 10px;
+  gap: 10px;
+}
+
+.review-edit-form .movie-card {
+  width: 122px;
+  height: 184px;
+
+  padding: 15px 0 25px;
+  box-sizing: content-box;
+}
+
+.review-edit-form .movie-rating .rating {
+  display: flex;
+  flex-direction: row-reverse;
+  line-height: 1;
+}
+
+.review-edit-form .comment-box {
+  width: 100%;
+  max-width: 365px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+}
+
+.review-edit-form .comment {
+  flex: 1;
+  min-height: 0;
+}
+
+.review-edit-form .review-buttons {
+  position: absolute;
+  display: flex;
+  gap: 0px;
+}
+
+.review-edit-form .review-buttons button {
+  padding: 5px 12px;   
+}
+
+#save img {
+  width: 30px;
+  height: 30px;
+}
+
+#close img {
+  width: 24px;
+  height: 24px;
+}
+
+.review-edit-form #save {
+  padding: 0 5px;
 }

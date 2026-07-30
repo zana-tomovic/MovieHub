@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import "../Movies/Movies.css";
+import "../UserMovies/UserMovies.css";
 import axios, { all } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Movies = ({ username }: { username?: string }) => {
+const UserMovies = ({ username }: { username?: string }) => {
     const [ movies, setMovies ] = useState<any>([]);
     const [ saved, setSaved ] = useState<any>([]);
     const [ seen, setSeen ] = useState<any>([]);
@@ -129,4 +129,4 @@ const Movies = ({ username }: { username?: string }) => {
   )
 }
 
-export default Movies
+export default UserMovies
