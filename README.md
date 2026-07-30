@@ -1,6 +1,7 @@
 Veb aplikacija podržava funkcije:
-- Korisnik: Nalog (kreiranje, izmjena, brisanje), Pregled sačuvanih filmova, Pregled kreiranih rezervacija, izmjena, brisanje.
-- Filmovi: Pretraga (unosom naziva filma, preko filtera), Čuvanje, Kreiranje recenzija
+- Korisnik: Nalog (kreiranje, izmjena, brisanje), Pregled sačuvanih filmova, Pregled kreiranih rezervacija, izmjena, brisanje,
+  Pregled naloga drugih korisnika i praćenje, Pregled notifikacija
+- Filmovi: Pretraga (unosom naziva filma, preko filtera), Čuvanje, Kreiranje recenzija, Lajkovanje recenzija
 - Preporuke
 
 Izabrane platforme:
