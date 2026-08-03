@@ -5,7 +5,7 @@ Veb aplikacija podržava funkcije:
 - Preporuke
 
 Izabrane platforme:
-- Za bekend je Nest.js
+- Za backend je NestJS
 - Za frontend je React Vite.
 - Koristi se nerelaciona baza podataka ArangoDB.
 
