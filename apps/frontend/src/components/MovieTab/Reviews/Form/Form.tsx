@@ -52,7 +52,6 @@ const Form = ({
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
 
     const token = localStorage.getItem('token');
 
@@ -60,13 +59,11 @@ const Form = ({
       axios.patch(`http://localhost:3000/reviews`, 
       { _id: review._id, rating: Number(rating), comment, spoiler },
       { headers: { Authorization: `Bearer ${token}` }})
-      .then(() => window.location.reload())
       .catch(console.error);
     } else {
       axios.post(`http://localhost:3000/reviews/${movieKey}`, 
       { rating: Number(rating), comment, spoiler, username },
       { headers: { Authorization: `Bearer ${token}` }})
-      .then(() => window.location.reload())
       .catch(console.error);
     }
   } 

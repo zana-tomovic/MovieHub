@@ -14,9 +14,6 @@ const SlideShow = ({ newMov, interval = 20000 }: { newMov: any[]; interval?: num
     return () => clearInterval(timer);
   }, [newMov.length, interval]);
 
-  // const prev = () => setCurr(prev => (prev - 1 + newMov.length) % newMov.length);
-  // const next = () => setCurr(prev => (prev + 1 + newMov.length) % newMov.length);
-
   if (!newMov.length) return null;
 
   return (

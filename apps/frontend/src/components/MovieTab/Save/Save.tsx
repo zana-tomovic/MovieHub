@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import "./Save.css";
 
-import saved from '../../assets/images/saved.png';
-import unsaved from '../../assets/images/unsaved.png';
+import saved from '../../../assets/images/saved.png';
+import unsaved from '../../../assets/images/unsaved.png';
 
-import unseen from '../../assets/images/visibility.png';
-import seen from '../../assets/images/visibility-off.png';
+import unseen from '../../../assets/images/visibility.png';
+import seen from '../../../assets/images/visibility-off.png';
 import axios from 'axios';
 
 const Save = ({movieKey, username}: {movieKey: string | undefined, username: string}) => {
