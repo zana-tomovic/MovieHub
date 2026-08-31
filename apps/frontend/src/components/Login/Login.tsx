@@ -41,7 +41,7 @@ const Login = () => {
     <div id="login">
       <div id="login-left">
         <form onSubmit={handleSubmit}>
-          <p id="message">Welcome back to <b>MovieHub</b>! Sign in to continue.</p>
+          <p id="message">Welcome back to <b>MovieHub</b>! <br />Sign in to continue. </p>
 
           <div id="username">
             <p className="label">Username</p>
