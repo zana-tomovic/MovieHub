@@ -2,6 +2,8 @@
 
 The movie search platform is designed as a modern three-tier architecture through the integration of separate technological layers within a unique monorepo code organization: **React (Vite)** on the frontend, **NestJS** on the backend, and the non-relational **ArangoDB** database.
 
+<img width="462" height="302" alt="Architecture diagram" src="https://github.com/user-attachments/assets/6093efa1-0876-4b9a-83de-a861658b5282" />
+
 The growing volume of available content creates a paradox of choice, more options require more cognitive effort, often leading to decision fatigue, repeated searching, and wasted time. This platform aims to ease the decision-making process through search, personalized recommendations, and interactions with other users. In addition to search functionality, the platform provides the ability to keep personalized movie diaries.
 
 The primary goal when designing the user interface was to create a modern, intuitive, and accessible web application. The inspiration for the visual and functional concept came from platforms like Letterboxd and IMDb, where the first encounter with the site's content is designed to stimulate user's curiosity about new films and community opinions.
